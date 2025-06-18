@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Kreo Mirage Wireless RGB Gaming controller gamepad",
+    "description": "Elevate your gaming experience with this premium controller, compatible with PC, iOS, Android, and PS4. Features customizable back buttons, Luma RGB lighting, macro/turbo functions, hall trigger technology, and 6+ hours of battery life.",
+    "price": 120,
+    "image": "/image/items/item-1.png",
+    "category": "electronics",
+    "stock": 120,
+    "rating": 4.5
+  },
+  {
+    "id": 2,
+    "name": "AK-900 Wired Keyboard",
+    "description": "Portronics Ki-Pad 2 wired keyboard with dual-color keys, multimedia hotkeys, USB-A cable, and spill-resistant design. Compatible with Windows, Linux, and macOS.",
+    "price": 80,
+    "image": "/image/items/item-2.png",
+    "category": "electronics",
+    "stock": 45,
+    "rating": 4.8
+  },
+  {
+    "id": 3,
+    "name": "IPS LCD Gaming Monitor",
+    "description": "BenQ MOBIUZ EX251 gaming monitor with 220Hz refresh rate, 1ms GTG, AMD FreeSync, Eye-care Tech, and customizable visual presets for immersive gameplay.",
+    "price": 120,
+    "image": "/image/items/item-3.png",
+    "category": "electronics",
+    "stock": 80,
+    "rating": 4.2
+  },
+  {
+    "id": 4,
+    "name": "S-Series Comfort chair",
+    "description": "IAFA Diego ergonomic office chair with tilting mechanism, mid-back support, metal base, and sleek black/grey design. Ideal for long work hours.",
+    "price": 120,
+    "image": "/image/items/item-4.png",
+    "category": "home-and-lifestyle",
+    "stock": 60,
+    "rating": 4.4
+  },
+  {
+    "id": 5,
+    "name": "The North Coat",
+    "description": "Premium insulated women's winter coat offering warmth, comfort, and wind protection with a stylish fit for everyday use.",
+    "price": 56,
+    "image": "/image/items/item-5.png",
+    "category": "woman-fashion",
+    "stock": 30,
+    "rating": 4.7
+  },
+  {
+    "id": 6,
+    "name": "RGB Liquid CPU Cooler",
+    "description": "High-performance liquid CPU cooler with RGB lighting, efficient thermal management, and quiet operation for gaming PCs.",
+    "price": 96,
+    "image": "/image/items/item-7.png",
+    "category": "electronics",
+    "stock": 30,
+    "rating": 4.7
+  },
+  {
+    "id": 7,
+    "name": "Small Bookshelf",
+    "description": "Compact wooden bookshelf with 3-tier storage, ideal for organizing books, decor, and small items in any room.",
+    "price": 76,
+    "image": "/image/items/item-8.png",
+    "category": "home-and-lifestyle",
+    "stock": 30,
+    "rating": 4.7
+  },
+  {
+    "id": 8,
+    "name": "Dog Food",
+    "description": "High-protein dry dog food with essential nutrients to support healthy digestion, strong muscles, and a shiny coat.",
+    "price": 120,
+    "image": "/image/items/item-9.png",
+    "category": "groceries-and-pets",
+    "stock": 30,
+    "rating": 4.7
+  },
+  {
+    "id": 9,
+    "name": "Digital Camera",
+    "description": "Compact digital camera with 20MP sensor, 4K video support, optical zoom, and WiFi for easy sharing.",
+    "price": 110,
+    "image": "/image/items/item-11.png",
+    "category": "electronics",
+    "stock": 30,
+    "rating": 4.7
+  },
+  {
+    "id": 10,
+    "name": "Laptop",
+    "description": "Powerful laptop equipped with an Intel i5 processor, 8GB RAM, 512GB SSD, and a 15.6” Full HD display. Perfect for productivity, multitasking, and entertainment.",
+    "price": 110,
+    "image": "/image/items/item-12.png",
+    "category": "electronics",
+    "stock": 30,
+    "rating": 4.7
+  },
+  {
+    "id": 11,
+    "name": "Sports Shoes",
+    "description": "Lightweight and durable sports shoes designed for comfort, grip, and performance. Ideal for running, gym workouts, and casual wear.",
+    "price": 110,
+    "image": "/image/items/item-13.png",
+    "category": "sports-and-outdoor",
+    "stock": 30,
+    "rating": 4.7
+  },
+  {
+    "id": 12,
+    "name": "Beauty Cream and Facewash",
+    "description": "A skincare combo pack including a nourishing beauty cream and a gentle facewash. Helps brighten the skin, reduce blemishes, and keep your face feeling fresh and hydrated.",
+    "price": 110,
+    "image": "/image/items/item-16.png",
+    "category": "health-and-beauty",
+    "stock": 30,
+    "rating": 4.7
+  }
+]

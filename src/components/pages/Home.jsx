@@ -1,7 +1,9 @@
-
+import { ProductSlider } from "../ProductSlider"
 
 export const Home = () => {
   return (
-    <div>Home</div>
+    <>
+      <ProductSlider productNum={8}/>
+    </>
   )
 }

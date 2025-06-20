@@ -7,7 +7,8 @@
     "image": "/image/items/item-1.png",
     "category": "electronics",
     "stock": 120,
-    "rating": 4.5
+    "rating": 4.5,
+    "tag": "flash-sale"
   },
   {
     "id": 2,
@@ -17,7 +18,8 @@
     "image": "/image/items/item-2.png",
     "category": "electronics",
     "stock": 45,
-    "rating": 4.8
+    "rating": 4.8,
+    "tag": ["flash-sale"]
   },
   {
     "id": 3,
@@ -27,7 +29,8 @@
     "image": "/image/items/item-3.png",
     "category": "electronics",
     "stock": 80,
-    "rating": 4.2
+    "rating": 4.2,
+    "tag": ["best-seller"]
   },
   {
     "id": 4,
@@ -37,7 +40,8 @@
     "image": "/image/items/item-4.png",
     "category": "home-and-lifestyle",
     "stock": 60,
-    "rating": 4.4
+    "rating": 4.4,
+    "tag": ["best-seller"]
   },
   {
     "id": 5,
@@ -47,7 +51,8 @@
     "image": "/image/items/item-5.png",
     "category": "woman-fashion",
     "stock": 30,
-    "rating": 4.7
+    "rating": 4.7,
+    "tag": ["flash-sale","best-seller"]
   },
   {
     "id": 6,
@@ -57,7 +62,8 @@
     "image": "/image/items/item-7.png",
     "category": "electronics",
     "stock": 30,
-    "rating": 4.7
+    "rating": 4.7,
+    "tag": ["flash-sale","best-seller"]
   },
   {
     "id": 7,
@@ -67,7 +73,8 @@
     "image": "/image/items/item-8.png",
     "category": "home-and-lifestyle",
     "stock": 30,
-    "rating": 4.7
+    "rating": 4.7,
+    "tag": ["flash-sale","best-seller"]
   },
   {
     "id": 8,
@@ -77,7 +84,8 @@
     "image": "/image/items/item-9.png",
     "category": "groceries-and-pets",
     "stock": 30,
-    "rating": 4.7
+    "rating": 4.7,
+    "tag": ["best-seller"]
   },
   {
     "id": 9,
@@ -87,7 +95,8 @@
     "image": "/image/items/item-11.png",
     "category": "electronics",
     "stock": 30,
-    "rating": 4.7
+    "rating": 4.7,
+    "tag": ["flash-sale","best-seller"]
   },
   {
     "id": 10,
@@ -97,7 +106,8 @@
     "image": "/image/items/item-12.png",
     "category": "electronics",
     "stock": 30,
-    "rating": 4.7
+    "rating": 4.7,
+    "tag": ["best-seller"]
   },
   {
     "id": 11,
@@ -107,7 +117,8 @@
     "image": "/image/items/item-13.png",
     "category": "sports-and-outdoor",
     "stock": 30,
-    "rating": 4.7
+    "rating": 4.7,
+    "tag": ["flash-sale","best-seller"]
   },
   {
     "id": 12,
@@ -117,6 +128,7 @@
     "image": "/image/items/item-16.png",
     "category": "health-and-beauty",
     "stock": 30,
-    "rating": 4.7
+    "rating": 4.7,
+    "tag": ["flash-sale","best-seller"]
   }
 ]

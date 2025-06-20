@@ -5,21 +5,22 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
-export const ProductSlider = ({productNum}) => {
+export const ProductSlider = ({productNum,tagName}) => {
 
     const [products, setProducts] = useState([]);
     const baseUrl = import.meta.env.VITE_SITE_URL;
 
-    useEffect(()=>{
-        fetch('/data.json')
+    useEffect(() => {
+      fetch('/data.json')
         .then(res => res.json())
         .then(data => {
-          const firstTen = data.slice(0, productNum); // Get only the first 10 products
-          setProducts(firstTen);
+          const flashSaleProducts = data
+            .filter(product => product.tag && product.tag.includes(tagName))
+            .slice(0, productNum); // Limit to first 10
+          setProducts(flashSaleProducts);
         })
-        .catch((err) => console.error("Failed to fetch product data:", err));
-
-    },[]);
+        .catch(err => console.error("Failed to fetch product data:", err));
+    }, []);
   return (
     <section className="section">
       <div className="container">

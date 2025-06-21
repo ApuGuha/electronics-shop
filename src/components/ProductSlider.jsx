@@ -8,7 +8,6 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 export const ProductSlider = ({productNum,tagName}) => {
 
     const [products, setProducts] = useState([]);
-    const baseUrl = import.meta.env.VITE_SITE_URL;
 
     useEffect(() => {
       fetch('/data.json')

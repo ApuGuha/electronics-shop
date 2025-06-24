@@ -1,6 +1,8 @@
 import { useWishlist } from "./contexts/WishlistContext";
+import { useCart } from "./contexts/CartContext";
 
 export const ProductCard = ({product}) => {
+  const { addToCart } = useCart();
   const { addToWishList, removeFromWishlist, isInWishlist } = useWishlist();
 
   const isWishlisted = isInWishlist(product.id);
@@ -110,6 +112,7 @@ export const ProductCard = ({product}) => {
               </div>
               <button
                 className="add_to_cart"
+                onClick={()=> addToCart(product)}
                 data-id={product?.id}
                 data-title={product?.name}
                 data-image={product?.image}

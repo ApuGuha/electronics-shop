@@ -9,6 +9,8 @@ import { Contact } from './components/pages/Contact';
 import { Shop } from "./components/pages/Shop";
 import { WishlistProvider } from "./components/contexts/WishlistContext";
 import { WishList } from "./components/pages/WishList";
+import { CartProvider } from "./components/contexts/CartContext";
+import { Cart } from "./components/pages/Cart";
 
 function LayoutWrapper()
 {
@@ -25,6 +27,7 @@ function LayoutWrapper()
         <Route path="/contact" element={<Contact />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/wishlist" element= {<WishList/>}/>
+        <Route path="/cart" element= {<Cart/>}/>
         {/* Optional: 404 page */}
         <Route path="*" element={<h2>Page Not Found</h2>} />
     </Routes>
@@ -38,9 +41,11 @@ function App() {
   return (
     <>
     <WishlistProvider>
-      <Router>
-        <LayoutWrapper/>
-      </Router>
+      <CartProvider>
+        <Router>
+          <LayoutWrapper/>
+        </Router>
+      </CartProvider>
     </WishlistProvider>
     </>
   )

@@ -1,10 +1,12 @@
 // Header.jsx
 import { Link } from "react-router-dom";
 import { useWishlist } from "../contexts/WishlistContext";
+import { useCart } from "../contexts/CartContext";
 
 export const Header = () => {
 
   const { wishList } = useWishlist();
+  const {cartItems} = useCart();
   return (
     <>
       <div className="top_nav">
@@ -34,7 +36,8 @@ export const Header = () => {
             </form>
             <Link to="/wishlist"><img src="./image/heart.png" alt="" className="nav_heart" />
             {wishList.length > 0 && `(${wishList.length})`}</Link>
-            <Link to="/cart"><img src="./image/cart.png" alt="" className="nav_cart" /></Link>
+            <Link to="/cart"><img src="./image/cart.png" alt="" className="nav_cart" />
+            {cartItems.length > 0 && `(${cartItems.length})`}</Link>
           </div>
           <span className="hamburger">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none"

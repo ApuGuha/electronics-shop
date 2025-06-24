@@ -1,7 +1,10 @@
 // Header.jsx
 import { Link } from "react-router-dom";
+import { useWishlist } from "../contexts/WishlistContext";
 
 export const Header = () => {
+
+  const { wishList } = useWishlist();
   return (
     <>
       <div className="top_nav">
@@ -29,7 +32,8 @@ export const Header = () => {
               <input type="text" className="nav_input" placeholder="search here...." />
               <img src="./image/search.png" alt="" className="nav_search" />
             </form>
-            <img src="./image/heart.png" alt="" className="nav_heart" />
+            <Link to="/wishlist"><img src="./image/heart.png" alt="" className="nav_heart" />
+            {wishList.length > 0 && `(${wishList.length})`}</Link>
             <Link to="/cart"><img src="./image/cart.png" alt="" className="nav_cart" /></Link>
           </div>
           <span className="hamburger">

@@ -1,0 +1,64 @@
+import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+export const Login = () => {
+    const {login} = useAuth();
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword ]= useState('');
+    const [err, setErr] = useState("");
+    const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    try {
+      login(email, password);
+      navigate("/");
+    } catch (error) {
+      setErr(error.message);
+    }
+  };
+  return (
+    <section className="section">
+      <div className="auth_container">
+        <div className="auth_img">
+          <img src={`${import.meta.env.VITE_SITE_URL}/image/auth-image.png`} alt="" className="auth_image" />
+        </div>
+        <div className="auth_content">
+          <form onSubmit={handleLogin} className="auth_form">
+            <h2 className="form_title">Login to your account</h2>
+            <p className="auth_p">Enter your details below</p>
+            {err && <p style={{ color: "red" }}>{err}</p>}
+            <div className="form_group">
+              <input type="email" className="form_input" 
+              value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="Email"/>
+            </div>
+            <div className="form_group form_pass">
+              <input
+                type="password"
+                placeholder="Password"
+                className="form_input" 
+                value={password} onChange={(e) => setPassword(e.target.value)} required
+                />
+            </div>
+            <div className="form_group">
+              <button className="form_btn" type="submit">
+                <a href="#" className="form_link">Login</a>
+              </button>
+            </div>
+            <div className="form_group">
+              <span
+                >Don't have an account?
+                <Link to="/signup" className="form_auth_link">
+                Sign up
+                </Link>
+                </span
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  )
+}

@@ -24,7 +24,7 @@ export const Footer = () => {
           <h3 className="footer_item_titl">Support</h3>
           <ul className="footer_list">
             <li className="li footer_list_item">
-                <Link to="/sign-up">Sign up</Link>
+                <Link to="/signup">Sign up</Link>
             </li>
             <li className="li footer_list_item">
                 <Link to="/cart">Cart</Link>

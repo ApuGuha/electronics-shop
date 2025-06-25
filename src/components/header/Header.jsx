@@ -2,11 +2,13 @@
 import { Link } from "react-router-dom";
 import { useWishlist } from "../contexts/WishlistContext";
 import { useCart } from "../contexts/CartContext";
+import { useAuth } from "../contexts/AuthContext";
 
 export const Header = () => {
 
   const { wishList } = useWishlist();
   const {cartItems} = useCart();
+  const { user, logout} = useAuth();
   return (
     <>
       <div className="top_nav">
@@ -27,7 +29,7 @@ export const Header = () => {
             <li className="nav_item"><Link to="/" className="nav_link">Home</Link></li>
             <li className="nav_item"><Link to="/about" className="nav_link">About</Link></li>
             <li className="nav_item"><Link to="/contact" className="nav_link">Contact</Link></li>
-            <li className="nav_item"><Link to="/sign-up" className="nav_link">Sign up</Link></li>
+            <li className="nav_item"><Link to="/signup" className="nav_link">Sign up</Link></li>
           </ul>
           <div className="nav_items">
             <form action="#" className="nav_form">
@@ -38,6 +40,16 @@ export const Header = () => {
             {wishList.length > 0 && `(${wishList.length})`}</Link>
             <Link to="/cart"><img src="./image/cart.png" alt="" className="nav_cart" />
             {cartItems.length > 0 && `(${cartItems.length})`}</Link>
+            {user ? (
+            <>
+              <span>Welcome, {user.name}</span>
+              <button onClick={logout}>Logout</button>
+            </>
+            ) : (
+            <>
+              <Link to="/login" className="nav_link">Login</Link>
+            </>
+        )}
           </div>
           <span className="hamburger">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none"

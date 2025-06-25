@@ -15,9 +15,18 @@ export const WishList = () => {
           <p id="demo"></p>
         </div>
         <div className="products">
-            {wishList.map((product) => (
-                <ProductCard product={product} key={product.id}/>
-            ))}
+          {
+            wishList.length === 0 ? (
+              <p>Wishlist is empty</p>
+            ) : (
+                <>
+                  {wishList.map((product) => (
+                    <ProductCard product={product} key={product.id}/>
+                  ))}
+                </>
+            )
+          }
+            
         </div>
       </div>
     </section>

@@ -1,0 +1,57 @@
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { ProductCard } from "../ProductCard";
+import { Pagination } from "../Pagination";
+
+const PRODUCTS_PER_PAGE = 6;
+export const CategoryPage = () => {
+    const {categoryName } = useParams();
+    const [products, setProducts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const formatted = categoryName.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+
+    useEffect(()=>{
+        fetch('/data.json')
+        .then(res => res.json())
+        .then((data)=> {
+            const filtered = data.filter(
+                (item) => item.category.toLowerCase() === categoryName.toLowerCase()
+            );
+            setProducts(filtered);
+        })
+        .catch((err) => console.error("Error loading products:", err));
+
+    }, [categoryName]);
+
+    // Pagination logic
+    const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE);
+    const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+    const currentProducts = products.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
+
+    const goToNextPage = () => {
+        setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+    };
+
+    const goToPrevPage = () => {
+        setCurrentPage((prev) => Math.max(prev - 1, 1));
+    };
+  return (
+    <section className="section">
+      <div className="container">
+        <div className="section_category">
+          <p className="section_category_p">Category: {formatted}</p>
+        </div>
+        <div className="section_header">
+          <h3 className="section_title">Explore Our Products</h3>
+          <p id="demo"></p>
+        </div>
+        <div className="products">
+            {currentProducts.map((product) => (
+                <ProductCard product={product} key={product.id}/>
+            ))}
+        </div>
+        <Pagination totalPages={totalPages} currentPage={currentPage} goToNextPage={goToNextPage} goToPrevPage={goToPrevPage}/>
+      </div>
+    </section>
+  )
+}

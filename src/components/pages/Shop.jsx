@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ProductCard } from "../ProductCard";
 import { Pagination } from "../Pagination";
+import { ProductList } from "../ProductList";
 
 const PRODUCTS_PER_PAGE = 6;
 
@@ -39,9 +40,7 @@ export const Shop = () => {
           <p id="demo"></p>
         </div>
         <div className="products">
-            {currentProducts.map((product) => (
-                <ProductCard product={product} key={product.id}/>
-            ))}
+            <ProductList products={currentProducts} />
         </div>
         <Pagination totalPages={totalPages} currentPage={currentPage} goToNextPage={goToNextPage} goToPrevPage={goToPrevPage}/>
       </div>

@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ProductCard } from "../ProductCard";
 import { Pagination } from "../Pagination";
+import { ProductList } from "../ProductList";
+import { Filters } from "../Filters";
 
 const PRODUCTS_PER_PAGE = 6;
 export const CategoryPage = () => {
@@ -9,6 +11,17 @@ export const CategoryPage = () => {
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const formatted = categoryName.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+    const [filters, setFilters] = useState({
+        color: [],
+        size: []
+    });
+
+    const handleFilterChange = (e) => {
+        setFilters((prev)=>({
+            ...prev,
+            [e.target.name] : e.target.value
+        }));
+    };
 
     useEffect(()=>{
         fetch('/data.json')
@@ -35,6 +48,13 @@ export const CategoryPage = () => {
     const goToPrevPage = () => {
         setCurrentPage((prev) => Math.max(prev - 1, 1));
     };
+
+    const filteredProducts = currentProducts.filter((item)=>{
+        return(
+            (filters.color.length === 0 || filters.color.some((c) => item.color.includes(c))) &&
+            (filters.size.length === 0 || filters.size.some((s) => item.size.includes(s)))
+        )
+    })
   return (
     <section className="section">
       <div className="container">
@@ -46,9 +66,8 @@ export const CategoryPage = () => {
           <p id="demo"></p>
         </div>
         <div className="products">
-            {currentProducts.map((product) => (
-                <ProductCard product={product} key={product.id}/>
-            ))}
+            <Filters filters={filters} onChange={handleFilterChange} />
+            <ProductList products={filteredProducts} />
         </div>
         <Pagination totalPages={totalPages} currentPage={currentPage} goToNextPage={goToNextPage} goToPrevPage={goToPrevPage}/>
       </div>

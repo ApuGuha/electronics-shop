@@ -13,7 +13,8 @@ export const CategoryPage = () => {
     const formatted = categoryName.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
     const [filters, setFilters] = useState({
         color: [],
-        size: []
+        size: [],
+        price: 200
     });
 
     const handleFilterChange = (e) => {
@@ -22,6 +23,7 @@ export const CategoryPage = () => {
             [e.target.name] : e.target.value
         }));
     };
+    // console.log(filters);
 
     useEffect(()=>{
         fetch('/data.json')
@@ -52,7 +54,8 @@ export const CategoryPage = () => {
     const filteredProducts = currentProducts.filter((item)=>{
         return(
             (filters.color.length === 0 || filters.color.some((c) => item.color.includes(c))) &&
-            (filters.size.length === 0 || filters.size.some((s) => item.size.includes(s)))
+            (filters.size.length === 0 || filters.size.some((s) => item.size.includes(s))) &&
+            (item.price <= filters.price)
         )
     })
   return (

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Link } from "react-router-dom";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -10,6 +11,7 @@ export const ProductSlider = ({productNum,tagName}) => {
 
     const [products, setProducts] = useState([]);
     const baseUrl = import.meta.env.VITE_SITE_URL;
+    const formatted = tagName.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
 
     useEffect(() => {
       fetch('/data.json')
@@ -29,7 +31,7 @@ export const ProductSlider = ({productNum,tagName}) => {
           <p className="section_category_p">Today's</p>
         </div>
         <div className="section_header">
-          <h3 className="section_title">Flash Sale</h3>
+          <h3 className="section_title">{formatted}</h3>
           <p id="demo"></p>
         </div>
         <div className="swiper mySwiper">
@@ -61,7 +63,7 @@ export const ProductSlider = ({productNum,tagName}) => {
           <div className="swiper-pagination"></div>
         </div>
         <div className="container_btn">
-          <a href="#" className="container_btn_a">VIEW ALL PRODUCTS</a>
+          <Link to="/shop" className="container_btn_a">VIEW ALL PRODUCTS</Link>
         </div>
       </div>
     </section>

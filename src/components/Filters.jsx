@@ -16,6 +16,10 @@ export const Filters = ({ filters, onChange}) => {
 
         onChange({ target: { name: type, value: updatedValues } });
     };
+
+    const handleRangeChange = (e) => {
+        onChange({target: {name: "price", value: parseInt(e.target.value)}})
+    }
         
   return (
     <div className="filters">
@@ -51,16 +55,16 @@ export const Filters = ({ filters, onChange}) => {
                 ))
             }
         </div>
-        {/* <div>
+        <div>
             <p><strong>Price:</strong></p>
             <input
             type="range"
             min="0"
-            max="100"
+            max="2000"
             value={filters.price}
-            onChange={(e) => handleRangeChange(e, "price")}
+            onChange={handleRangeChange}
             />
-        </div> */}
+        </div>
     </div>
   )
 }

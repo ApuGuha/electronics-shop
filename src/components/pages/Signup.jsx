@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 const Signup = () => {
@@ -13,7 +13,7 @@ const Signup = () => {
         e.preventDefault();
         try{
             register(name,email,password);
-            navigate('/');
+            navigate('/login');
         }
         catch(error)
         {
@@ -47,7 +47,7 @@ const Signup = () => {
             </div>
             <div className="form_group">
               <button className="form_btn" type="submit">
-                <a href="#" className="form_link">Create Account</a>
+                Create Account
               </button>
             </div>
             <div className="form_group">

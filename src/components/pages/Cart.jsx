@@ -1,10 +1,26 @@
-import { useCart } from "../contexts/CartContext"
+import { use } from "react";
+import { useCart } from "../contexts/CartContext";
+import { useNavigate } from "react-router-dom";
 
 export const Cart = () => {
-    const { cartItems, addToCart, removeFromCart, updatequantity, clearCart } = useCart();
+    const { cartItems, addToCart, removeFromCart, updateQuantity, clearCart } = useCart();
+    const navigate = useNavigate();
 
     const getTotal = () =>
         cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    const handleCheckout = () => {
+        const user = JSON.parse(localStorage.getItem('loggedInUser'));
+        if(user)
+        {
+            navigate('/checkout');
+        }
+        else
+        {
+            navigate('/signup')
+        }
+
+    }
   return (
     <section className="section">
         <div className="container">
@@ -34,7 +50,7 @@ export const Cart = () => {
                                             type="number"
                                             min="1"
                                             value={item.quantity}
-                                            onChange= {(e) => updatequantity(item.id, parseInt(e.target.value))}
+                                            onChange= {(e) => updateQuantity(item.id, item.color, item.size, parseInt(e.target.value))}
                                         />
                                     </div>
                                     <p className="cart_item_price">${(item.price * item.quantity).toFixed(2)}</p>
@@ -46,6 +62,7 @@ export const Cart = () => {
                     </div>
                 <h3>Total: ${getTotal().toFixed(2)}</h3>
                 <button onClick={clearCart}>Clear Cart</button>
+                <button onClick={handleCheckout}>Checkout</button>
                 </>
             )
         }

@@ -13,6 +13,8 @@ import Signup from "./components/pages/Signup";
 import { Login } from "./components/pages/Login";
 import { useAuth } from "./components/contexts/AuthContext";
 import { CategoryPage } from "./components/pages/CategoryPage";
+import { ProductPage } from "./components/pages/ProductPage";
+import { Checkout } from "./components/pages/Checkout";
 
 function LayoutWrapper()
 {
@@ -34,6 +36,8 @@ function LayoutWrapper()
         <Route path="/signup" element= {<Signup/>}/>
         <Route path="/login" element= {<Login/>}/>
         <Route path="/category/:categoryName" element={<CategoryPage />} />
+        <Route path="/product/:id" element={<ProductPage/>}/>
+        <Route path="/checkout" element={<Checkout/>}/>
         {/* Optional: 404 page */}
         <Route path="*" element={<h2>Page Not Found</h2>} />
     </Routes>

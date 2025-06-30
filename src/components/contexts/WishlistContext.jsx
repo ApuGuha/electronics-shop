@@ -37,6 +37,7 @@ export const WishlistProvider = ({children, userId}) => {
 
     const removeFromWishlist = (productId) =>{
         setWishList((prev) => prev.filter((p) => p.id !== productId));
+        localStorage.removeItem(`wishlist-${userId}`);
     }
 
     const isInWishlist = (productId) => {

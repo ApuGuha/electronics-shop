@@ -1,5 +1,6 @@
 import { useWishlist } from "./contexts/WishlistContext";
 import { useCart } from "./contexts/CartContext";
+import { Link } from "react-router-dom";
 
 export const ProductCard = ({product}) => {
   const { addToCart } = useCart();
@@ -10,8 +11,24 @@ export const ProductCard = ({product}) => {
   const toggleWishlist = () => {
     isWishlisted ? removeFromWishlist(product.id) : addToWishList(product);
   };
+
+  const handleAddToCart = () =>{
+
+     const cartItem = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      color: product.color[0],
+      size: product.size[0],
+      quantity: 1
+    };
+
+    addToCart(cartItem);
+  }
   return (
     <div className="card" key={product?.id}>
+          
             <div className="card_top">
               <img src={`${import.meta.env.VITE_SITE_URL}${product.image}`} alt={product?.name} className="card_img" />
               <div className="card_top_icons">
@@ -49,7 +66,9 @@ export const ProductCard = ({product}) => {
               </div>
             </div>
             <div className="card_body">
+              <Link to={`/product/${product.id}`}>
               <h3 className="card_title">{product?.name}</h3>
+              </Link>
               <p className="card_price">${product?.price}</p>
               <div className="card_ratings">
                 <div className="card_stars">
@@ -112,7 +131,7 @@ export const ProductCard = ({product}) => {
               </div>
               <button
                 className="add_to_cart"
-                onClick={()=> addToCart(product)}
+                onClick={handleAddToCart}
                 data-id={product?.id}
                 data-title={product?.name}
                 data-image={product?.image}

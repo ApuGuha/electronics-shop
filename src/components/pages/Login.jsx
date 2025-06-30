@@ -44,7 +44,7 @@ export const Login = () => {
             </div>
             <div className="form_group">
               <button className="form_btn" type="submit">
-                <a href="#" className="form_link">Login</a>
+                Login
               </button>
             </div>
             <div className="form_group">

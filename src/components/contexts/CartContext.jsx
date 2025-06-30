@@ -8,12 +8,26 @@ export const CartProvider = ({ children, userId }) => {
 
   // Load from localStorage
   useEffect(() => {
-    if (userId) {
-      const stored = localStorage.getItem(`cart-${userId}`);
-      setCartItems(stored ? JSON.parse(stored) : []);
-    } else {
-      const userStored = localStorage.getItem('cart');
-      setCartItems(userStored ? JSON.parse(userStored) : []);
+    if(userId)
+    {
+       const guestCart = JSON.parse(localStorage.getItem('cart'));
+       const userCart = JSON.parse(localStorage.getItem(`cart-${userId}`));
+
+       if(guestCart && guestCart.length > 0 && (!userCart || userCart.length === 0))
+       {
+          localStorage.setItem(`cart-${userId}`, JSON.stringify(guestCart));
+          localStorage.removeItem('cart');
+          setCartItems(guestCart);
+       }
+       else
+       {
+        setCartItems(userCart || []);
+       }
+    }
+    else
+    {
+      const guestCart = JSON.parse(localStorage.getItem('cart'));
+      setCartItems(guestCart || []);
     }
   }, [userId]);
 
@@ -88,7 +102,7 @@ export const CartProvider = ({ children, userId }) => {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, updateQuantity, clearCart }}
+      value={{ cartItems,addToCart, removeFromCart, updateQuantity, clearCart }}
     >
       {children}
     </CartContext.Provider>

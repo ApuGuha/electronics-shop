@@ -1,12 +1,25 @@
 import { useState, useEffect } from "react";
 import { Pagination } from "../Pagination";
 import { ProductList } from "../ProductList";
+import { Filters } from "../Filters";
 
 const PRODUCTS_PER_PAGE = 6;
 
 export const Shop = () => {
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [filters, setFilters] = useState({
+        color: [],
+        size: [],
+        price: 200
+    });
+
+    const handleFilterChange = (e) => {
+        setFilters((prev)=>({
+            ...prev,
+            [e.target.name] : e.target.value
+        }));
+    };
 
     useEffect(()=>{
         fetch('/data.json')
@@ -28,6 +41,13 @@ export const Shop = () => {
     const goToPrevPage = () => {
         setCurrentPage((prev) => Math.max(prev - 1, 1));
     };
+    const filteredProducts = currentProducts.filter((item)=>{
+        return(
+            (filters.color.length === 0 || filters.color.some((c) => item.color.includes(c))) &&
+            (filters.size.length === 0 || filters.size.some((s) => item.size.includes(s))) &&
+            (item.price <= filters.price)
+        )
+    })
   return (
     <section className="section">
       <div className="container">
@@ -39,7 +59,8 @@ export const Shop = () => {
           <p id="demo"></p>
         </div>
         <div className="products">
-            <ProductList products={currentProducts} />
+            <Filters filters={filters} onChange={handleFilterChange} />
+            <ProductList products={filteredProducts} />
         </div>
         <Pagination totalPages={totalPages} currentPage={currentPage} goToNextPage={goToNextPage} goToPrevPage={goToPrevPage}/>
       </div>

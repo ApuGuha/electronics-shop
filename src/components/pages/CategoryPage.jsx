@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ProductCard } from "../ProductCard";
 import { Pagination } from "../Pagination";
 import { ProductList } from "../ProductList";
 import { Filters } from "../Filters";

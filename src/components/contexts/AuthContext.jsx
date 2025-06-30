@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
-// import { useCart } from "./CartContext";
+
+
 
 const AuthContext = createContext();
 
@@ -7,8 +8,6 @@ export const useAuth = () => useContext(AuthContext);
 
 
 export const AuthProvider = ({children}) => {
-    
-    // const { setCartItems } = useCart();
     const [user, setUser] = useState(()=>{
         const stored = localStorage.getItem('loggedInUser');
         return stored ? JSON.parse(stored) : null;
@@ -35,25 +34,12 @@ export const AuthProvider = ({children}) => {
 
         setUser(matched);
         localStorage.setItem('loggedInUser', JSON.stringify(matched));
-        // Check if guest cart exists
-        const guestCart = JSON.parse(localStorage.getItem("cart"));
-
-        if (guestCart && guestCart.length > 0) {
-            localStorage.setItem(`cart-${user.email}`, JSON.stringify(guestCart));
-
-            // Optional: remove guest cart
-            localStorage.removeItem("cart");
-            // setCartItems(guestCart);
-        }
-        else {
-            const existing = JSON.parse(localStorage.getItem(`cart-${user.email}`)) || [];
-            // setCartItems(existing);
-        }
     }
 
     const logout = () =>{
         setUser(null);
         localStorage.removeItem('loggedInUser');
+
     }
 
     return(

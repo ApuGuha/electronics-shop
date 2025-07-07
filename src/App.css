@@ -590,3 +590,30 @@ ul {
 .form_group > span {
   margin-top: 2rem;
 }
+
+.mobile_nav_header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.mobile_nav_close {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+}
+.mobile_nav_hide {
+  display: none;
+}
+
+.mobile_nav_show {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fff;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  overflow-y: auto;
+}

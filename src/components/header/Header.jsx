@@ -1,14 +1,29 @@
-// Header.jsx
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useWishlist } from "../contexts/WishlistContext";
 import { useCart } from "../contexts/CartContext";
 import { useAuth } from "../contexts/AuthContext";
 
 export const Header = () => {
-
   const { wishList } = useWishlist();
-  const {cartItems} = useCart();
-  const { user, logout} = useAuth();
+  const { cartItems } = useCart();
+  const { user, logout } = useAuth();
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    // Disable scroll when mobile nav is open
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
+  }, [isMobileMenuOpen]);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <>
       <div className="top_nav">
@@ -31,27 +46,31 @@ export const Header = () => {
             <li className="nav_item"><Link to="/contact" className="nav_link">Contact</Link></li>
             <li className="nav_item"><Link to="/signup" className="nav_link">Sign up</Link></li>
           </ul>
+
           <div className="nav_items">
-            <form action="#" className="nav_form">
+            <form className="nav_form">
               <input type="text" className="nav_input" placeholder="search here...." />
               <img src="./image/search.png" alt="" className="nav_search" />
             </form>
-            <Link to="/wishlist"><img src="./image/heart.png" alt="" className="nav_heart" />
-            {wishList.length > 0 && `(${wishList.length})`}</Link>
-            <Link to="/cart"><img src="./image/cart.png" alt="" className="nav_cart" />
-            {cartItems.length > 0 && `(${cartItems.length})`}</Link>
+            <Link to="/wishlist">
+              <img src="./image/heart.png" alt="" className="nav_heart" />
+              {wishList.length > 0 && `(${wishList.length})`}
+            </Link>
+            <Link to="/cart">
+              <img src="./image/cart.png" alt="" className="nav_cart" />
+              {cartItems.length > 0 && `(${cartItems.length})`}
+            </Link>
             {user ? (
-            <>
-              <span>Welcome, {user.name}</span>
-              <button onClick={logout}>Logout</button>
-            </>
+              <>
+                <span>Welcome, {user.name}</span>
+                <button onClick={logout}>Logout</button>
+              </>
             ) : (
-            <>
               <Link to="/login" className="nav_link">Login</Link>
-            </>
-        )}
+            )}
           </div>
-          <span className="hamburger">
+
+          <span className="hamburger" onClick={toggleMobileMenu}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
               viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round"
@@ -61,12 +80,25 @@ export const Header = () => {
         </div>
       </nav>
 
-      <nav className="mobile_nav mobile_nav_hide">
+      <nav className={`mobile_nav ${isMobileMenuOpen ? "mobile_nav_show" : "mobile_nav_hide"}`}>
+        <div className="mobile_nav_header">
+          <span className="mobile_nav_close" onClick={closeMobileMenu}>
+            &times;
+          </span>
+        </div>
         <ul className="mobile_nav_list">
-          <li className="mobile_nav_item"><Link to="/" className="mobile_nav_link">Home</Link></li>
-          <li className="mobile_nav_item"><Link to="/about" className="mobile_nav_link">About</Link></li>
-          <li className="mobile_nav_item"><Link to="/contact" className="mobile_nav_link">Contact</Link></li>
-          <li className="mobile_nav_item"><Link to="/cart" className="mobile_nav_link">Cart</Link></li>
+          <li className="mobile_nav_item">
+            <Link to="/" className="mobile_nav_link" onClick={closeMobileMenu}>Home</Link>
+          </li>
+          <li className="mobile_nav_item">
+            <Link to="/about" className="mobile_nav_link" onClick={closeMobileMenu}>About</Link>
+          </li>
+          <li className="mobile_nav_item">
+            <Link to="/contact" className="mobile_nav_link" onClick={closeMobileMenu}>Contact</Link>
+          </li>
+          <li className="mobile_nav_item">
+            <Link to="/cart" className="mobile_nav_link" onClick={closeMobileMenu}>Cart</Link>
+          </li>
         </ul>
       </nav>
     </>

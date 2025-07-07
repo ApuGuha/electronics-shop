@@ -10,7 +10,6 @@ import { ProductCard } from './ProductCard';
 export const ProductSlider = ({productNum,tagName}) => {
 
     const [products, setProducts] = useState([]);
-    const baseUrl = import.meta.env.VITE_SITE_URL;
     const formatted = tagName.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
 
     useEffect(() => {
@@ -39,11 +38,13 @@ export const ProductSlider = ({productNum,tagName}) => {
             <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
                 spaceBetween={20}
-                slidesPerView={4}
+                slidesPerView={1}
                 pagination={{ clickable: true }}
+                loop={true}
                 autoplay={{
                   delay: 2000,       // Time between slides in ms
                   disableOnInteraction: false, // Keep autoplay even after user swipes
+                  pauseOnMouseEnter: true
                 }}
                 breakpoints={{
                 640: { slidesPerView: 1 },

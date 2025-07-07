@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export const ProductGallery = ({tagName}) => {
     const [gallerProducts, setGalleryProducts] = useState([]);
@@ -28,7 +29,7 @@ export const ProductGallery = ({tagName}) => {
                 <p className="gallery_item_p">
                     {product?.description}
                 </p>
-                <a href="#" className="gallery_item_link">SHOP NOW</a>
+                <Link to={`/product/${product.id}`} className="gallery_item_link">SHOP NOW</Link>
                 </div>
             </div>
             ))}

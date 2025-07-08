@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useWishlist } from "../contexts/WishlistContext";
 import { useCart } from "../contexts/CartContext";
 import { useAuth } from "../contexts/AuthContext";
 
 export const Header = () => {
   const { wishList } = useWishlist();
-  const { cartItems } = useCart();
+  const { cartItems, loading } = useCart();
   const { user, logout } = useAuth();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredResults, setFilteredResults] = useState([]);
+  const navigate = useNavigate();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -22,6 +25,35 @@ export const Header = () => {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  useEffect(() => {
+  const fetchAndFilterProducts = async () => {
+    if (searchTerm.trim()) {
+      try {
+        const response = await fetch('/data.json');
+        const data = await response.json();
+
+        const filtered = data.filter(product =>
+          product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        setFilteredResults(filtered);
+      } catch (error) {
+        console.error('Error fetching product data:', error);
+      }
+    } else {
+      setFilteredResults([]);
+    }
+  };
+
+  fetchAndFilterProducts();
+}, [searchTerm]);
+
+const handleProductClick = (productId) => {
+    setSearchTerm("");
+    setFilteredResults([]);
+    navigate(`/product/${productId}`);
   };
 
   return (
@@ -48,17 +80,41 @@ export const Header = () => {
           </ul>
 
           <div className="nav_items">
-            <form className="nav_form">
-              <input type="text" className="nav_input" placeholder="search here...." />
-              <img src="./image/search.png" alt="" className="nav_search" />
-            </form>
+            <div className="nav_form_wrapper" style={{ position: "relative" }}>
+              <form className="nav_form" onSubmit={(e) => e.preventDefault()}>
+                <input
+                  type="text"
+                  className="nav_input"
+                  placeholder="Search here..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <img src="./image/search.png" alt="" className="nav_search" />
+              </form>
+
+              {filteredResults.length > 0 && (
+                <ul className="search_dropdown">
+                  {filteredResults.map((product) => (
+                    <li
+                      key={product.id}
+                      className="search_dropdown_item"
+                      onClick={() => handleProductClick(product.id)}
+                    >
+                      {product.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
             <Link to="/wishlist">
               <img src="./image/heart.png" alt="" className="nav_heart" />
               {wishList.length > 0 && `(${wishList.length})`}
             </Link>
-            <Link to="/cart">
-              <img src="./image/cart.png" alt="" className="nav_cart" />
-              {cartItems.length > 0 && `(${cartItems.length})`}
+            <Link to="/cart" className="nav_cart_link">
+              <img src="./image/cart.png" alt="Cart" className="nav_cart" />
+              {!loading && cartItems.length > 0 && (
+                <span className="cart_count">({cartItems.length})</span>
+              )}
             </Link>
             {user ? (
               <>

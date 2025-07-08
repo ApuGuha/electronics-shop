@@ -21,6 +21,7 @@ function LayoutWrapper()
   const location = useLocation();
   const isHome = location.pathname === "/";
   
+  
 
   return(
     <>
@@ -46,6 +47,7 @@ function LayoutWrapper()
   )
 }
 export const AppRoutes = () => {
+  
 
     const { user } = useAuth();
     const userId = user ? user.email : null;

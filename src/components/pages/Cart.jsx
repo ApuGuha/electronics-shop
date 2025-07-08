@@ -17,7 +17,7 @@ export const Cart = () => {
     }
   };
 
-  if (loading) return <p>Loading cart...</p>; // ⏳ Prevent premature render
+  if (loading) return <p>Loading cart...</p>;
 
   return (
     <section className="section">

@@ -27,14 +27,14 @@ export const AuthProvider = ({children}) => {
         // localStorage.setItem('loggedInUser', JSON.stringify(newUser));
     }
 
-    const login = (email,password) => {
+    const login = (email, password) => {
         const users = JSON.parse(localStorage.getItem('users')) || [];
         const matched = users.find((u) => u.email === email && u.password === password);
-        if(!matched) throw new Error('Invalid email or password');
+        if (!matched) throw new Error('Invalid email or password');
 
         setUser(matched);
         localStorage.setItem('loggedInUser', JSON.stringify(matched));
-    }
+    };
 
     const logout = () =>{
         setUser(null);

@@ -8,7 +8,9 @@
     "category": "electronics",
     "stock": 120,
     "rating": 4.5,
-    "tag": "flash-sale"
+    "tag": "flash-sale",
+    "color" : ["red", "blue", "black"],
+    "size" : ["8", "9", "10"]
   },
   {
     "id": 2,
@@ -19,7 +21,9 @@
     "category": "electronics",
     "stock": 45,
     "rating": 4.8,
-    "tag": ["flash-sale"]
+    "tag": ["flash-sale"],
+    "color" : ["red", "blue"],
+    "size" : ["8", "9", "10"]
   },
   {
     "id": 3,
@@ -30,7 +34,9 @@
     "category": "electronics",
     "stock": 80,
     "rating": 4.2,
-    "tag": ["best-seller"]
+    "tag": ["best-seller"],
+    "color" : ["red", "blue", "black"],
+    "size" : ["8", "9", "10"]
   },
   {
     "id": 4,
@@ -41,7 +47,9 @@
     "category": "home-and-lifestyle",
     "stock": 60,
     "rating": 4.4,
-    "tag": ["best-seller"]
+    "tag": ["best-seller"],
+    "color" : ["red", "blue", "black"],
+    "size" : ["8", "9", "10"]
   },
   {
     "id": 5,
@@ -52,7 +60,9 @@
     "category": "woman-fashion",
     "stock": 30,
     "rating": 4.7,
-    "tag": ["flash-sale","best-seller"]
+    "tag": ["flash-sale","best-seller"],
+    "color" : ["red", "blue", "black"],
+    "size" : ["8", "9", "10"]
   },
   {
     "id": 6,
@@ -63,7 +73,9 @@
     "category": "electronics",
     "stock": 30,
     "rating": 4.7,
-    "tag": ["flash-sale","best-seller"]
+    "tag": ["flash-sale","best-seller"],
+    "color" : ["red", "blue", "black"],
+    "size" : ["8", "9", "10"]
   },
   {
     "id": 7,
@@ -74,7 +86,9 @@
     "category": "home-and-lifestyle",
     "stock": 30,
     "rating": 4.7,
-    "tag": ["flash-sale","best-seller"]
+    "tag": ["flash-sale","best-seller"],
+    "color" : ["red", "blue", "black"],
+    "size" : ["8", "9", "10"]
   },
   {
     "id": 8,
@@ -85,7 +99,9 @@
     "category": "groceries-and-pets",
     "stock": 30,
     "rating": 4.7,
-    "tag": ["best-seller"]
+    "tag": ["best-seller"],
+    "color" : ["red", "blue", "black"],
+    "size" : ["8", "9", "10"]
   },
   {
     "id": 9,
@@ -96,7 +112,9 @@
     "category": "electronics",
     "stock": 30,
     "rating": 4.7,
-    "tag": ["flash-sale","best-seller"]
+    "tag": ["flash-sale","best-seller"],
+    "color" : ["red", "blue", "black"],
+    "size" : ["8", "9", "10"]
   },
   {
     "id": 10,
@@ -107,7 +125,9 @@
     "category": "electronics",
     "stock": 30,
     "rating": 4.7,
-    "tag": ["best-seller"]
+    "tag": ["best-seller"],
+    "color" : ["red", "blue", "black"],
+    "size" : ["8", "9", "10"]
   },
   {
     "id": 11,
@@ -118,7 +138,9 @@
     "category": "sports-and-outdoor",
     "stock": 30,
     "rating": 4.7,
-    "tag": ["flash-sale","best-seller"]
+    "tag": ["flash-sale","best-seller"],
+    "color" : ["red", "blue", "black"],
+    "size" : ["8", "9", "10"]
   },
   {
     "id": 12,
@@ -129,6 +151,60 @@
     "category": "health-and-beauty",
     "stock": 30,
     "rating": 4.7,
-    "tag": ["flash-sale","best-seller"]
+    "tag": ["flash-sale","best-seller"],
+    "color" : ["red", "blue", "black"],
+    "size" : ["8", "9", "10"]
+  },
+  {
+    "id": 13,
+    "name": "Playstation 1",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing.",
+    "price": 110,
+    "image": "/image/gallery/gallery-1.png",
+    "category": "sports-and-outdoor",
+    "stock": 30,
+    "rating": 4.7,
+    "tag": ["playstation"],
+    "color" : ["red", "blue", "black"],
+    "size" : ["8", "9", "10"]
+  },
+  {
+    "id": 14,
+    "name": "Playstation 2",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing.",
+    "price": 110,
+    "image": "/image/gallery/gallery-2.png",
+    "category": "sports-and-outdoor",
+    "stock": 30,
+    "rating": 4.7,
+    "tag": ["playstation"],
+    "color" : ["red", "blue", "black"],
+    "size" : ["8", "9", "10"]
+  },
+  {
+    "id": 15,
+    "name": "Playstation 3",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing.",
+    "price": 110,
+    "image": "/image/gallery/gallery-3.png",
+    "category": "sports-and-outdoor",
+    "stock": 30,
+    "rating": 4.7,
+    "tag": ["playstation"],
+    "color" : ["red", "blue", "black"],
+    "size" : ["8", "9", "10"]
+  },
+  {
+    "id": 16,
+    "name": "Playstation 4",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing.",
+    "price": 110,
+    "image": "/image/gallery/gallery-4.png",
+    "category": "sports-and-outdoor",
+    "stock": 30,
+    "rating": 4.7,
+    "tag": ["playstation"],
+    "color" : ["red", "blue", "black"],
+    "size" : ["8", "9", "10"]
   }
 ]

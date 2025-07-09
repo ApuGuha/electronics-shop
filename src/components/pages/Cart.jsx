@@ -17,14 +17,28 @@ export const Cart = () => {
     }
   };
 
-  if (loading) return <p>Loading cart...</p>;
+  // Show loading state while cart is being loaded
+  // if (loading) {
+  //   return (
+  //     <section className="section">
+  //       <div className="container">
+  //         <p>Loading cart...</p>
+  //       </div>
+  //     </section>
+  //   );
+  // }
 
   return (
     <section className="section">
       <div className="container">
         <div className="cart">
           {cartItems.length === 0 ? (
-            <p>Cart is empty</p>
+            <div>
+              <p>Your cart is empty</p>
+              <button onClick={() => navigate("/shop")} className="container_btn_a">
+                Continue Shopping
+              </button>
+            </div>
           ) : (
             <>
               <div className="cart_header">
@@ -52,14 +66,12 @@ export const Cart = () => {
                         type="number"
                         min="1"
                         value={item.quantity}
-                        onChange={(e) =>
-                          updateQuantity(
-                            item.id,
-                            item.color,
-                            item.size,
-                            parseInt(e.target.value)
-                          )
-                        }
+                        onChange={(e) => {
+                          const value = parseInt(e.target.value);
+                          if (value > 0) {
+                            updateQuantity(item.id, item.color, item.size, value);
+                          }
+                        }}
                       />
                     </div>
                     <p className="cart_item_price">
@@ -70,6 +82,7 @@ export const Cart = () => {
                         removeFromCart(item.id, item.color, item.size)
                       }
                       className="cart_item_delete"
+                      aria-label="Remove item from cart"
                     >
                       🗑️
                     </button>

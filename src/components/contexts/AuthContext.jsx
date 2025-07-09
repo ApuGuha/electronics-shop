@@ -37,6 +37,10 @@ export const AuthProvider = ({children}) => {
     };
 
     const logout = () =>{
+        if (user?.email) {
+            localStorage.removeItem(`cart_${user.email}`);
+            localStorage.removeItem(`wishlist_${user.email}`);
+        }
         setUser(null);
         localStorage.removeItem('loggedInUser');
 

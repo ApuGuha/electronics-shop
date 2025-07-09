@@ -1,128 +1,66 @@
-import { createContext, useContext, useState, useEffect, useRef } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext();
+
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children, userId }) => {
-  console.log(userId);
-  const [cartItems, setCartItems] = useState([]);
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const didLoad = useRef(false);
-  const previousUserId = useRef(userId);
+  const storageKey = userId ? `cart_${userId}` : "guest_cart";
 
-  // 🧠 Load cart data
-  const loadCart = (currentUserId) => {
-    try {
-      const guestCart = JSON.parse(localStorage.getItem("cart")) || [];
-      
-      if (currentUserId) {
-        // User is logged in
-        const userCart = JSON.parse(localStorage.getItem(`cart-${currentUserId}`)) || [];
-        
-        if (guestCart.length > 0 && userCart.length === 0) {
-          // Migrate guest cart to user cart
-          localStorage.setItem(`cart-${currentUserId}`, JSON.stringify(guestCart));
-          localStorage.removeItem("cart");
-          setCartItems(guestCart);
-        } else {
-          // Load existing user cart
-          setCartItems(userCart);
-        }
-      } else {
-        // Guest user or userId not yet determined
-        setCartItems(guestCart);
-      }
+  // Load cart from localStorage initially
+  const [cartItems, setCartItems] = useState(() => {
+    const saved = localStorage.getItem(storageKey);
+    return saved ? JSON.parse(saved) : [];
+  });
 
-      didLoad.current = true;
-      setHasLoaded(true);
-    } catch (err) {
-      console.error("❌ Failed to load cart:", err);
-      setHasLoaded(true); // Set loaded even on error to prevent infinite loading
-    }
-  };
-
-  // 🧠 Load cart on mount and when userId changes
+  // Sync cart to localStorage whenever cartItems changes
   useEffect(() => {
-    // Always load cart, even if userId is undefined (treat as guest)
-    loadCart(userId);
-    previousUserId.current = userId;
-  }, [userId]);
+    localStorage.setItem(storageKey, JSON.stringify(cartItems));
+  }, [cartItems, storageKey]);
 
-  // Handle migration when user logs in (userId changes from null to actual value)
-  useEffect(() => {
-    if (previousUserId.current === null && userId && didLoad.current) {
-      // User just logged in, migrate cart if needed
-      const guestCart = JSON.parse(localStorage.getItem("cart")) || [];
-      const userCart = JSON.parse(localStorage.getItem(`cart-${userId}`)) || [];
-      
-      if (guestCart.length > 0 && userCart.length === 0) {
-        localStorage.setItem(`cart-${userId}`, JSON.stringify(guestCart));
-        localStorage.removeItem("cart");
-        setCartItems(guestCart);
-      } else if (userCart.length > 0) {
-        setCartItems(userCart);
-      }
-    }
-    previousUserId.current = userId;
-  }, [userId]);
-
-  // 🔄 Save cart after it's been loaded
-  useEffect(() => {
-    if (!didLoad.current) return;
-    
-    const key = userId ? `cart-${userId}` : "cart";
-    try {
-      localStorage.setItem(key, JSON.stringify(cartItems));
-    } catch (err) {
-      console.error("❌ Failed to save cart:", err);
-    }
-  }, [cartItems, userId]);
-
-  // ➕ Add
-  const addToCart = (product) => {
+  const addToCart = (item) => {
     setCartItems((prev) => {
-      const index = prev.findIndex(
-        (item) =>
-          item.id === product.id &&
-          item.color === product.color &&
-          item.size === product.size
+      const existingItem = prev.find(
+        (i) =>
+          i.id === item.id &&
+          i.color === item.color &&
+          i.size === item.size
       );
 
-      if (index !== -1) {
-        const updated = [...prev];
-        updated[index].quantity += Number(product.quantity);
-        return updated;
+      if (existingItem) {
+        return prev.map((i) =>
+          i.id === item.id &&
+          i.color === item.color &&
+          i.size === item.size
+            ? { ...i, quantity: i.quantity + item.quantity }
+            : i
+        );
+      } else {
+        return [...prev, item];
       }
-
-      return [...prev, { ...product, quantity: Number(product.quantity) }];
     });
   };
 
-  // ❌ Remove
   const removeFromCart = (id, color, size) => {
     setCartItems((prev) =>
       prev.filter(
-        (item) => !(item.id === id && item.color === color && item.size === size)
+        (i) => i.id !== id || i.color !== color || i.size !== size
       )
     );
   };
 
-  // 🔄 Update
   const updateQuantity = (id, color, size, quantity) => {
     setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id && item.color === color && item.size === size
-          ? { ...item, quantity: Number(quantity) }
-          : item
+      prev.map((i) =>
+        i.id === id && i.color === color && i.size === size
+          ? { ...i, quantity }
+          : i
       )
     );
   };
 
-  // 🧹 Clear
   const clearCart = () => {
     setCartItems([]);
-    const key = userId ? `cart-${userId}` : "cart";
-    localStorage.removeItem(key);
   };
 
   return (
@@ -133,7 +71,6 @@ export const CartProvider = ({ children, userId }) => {
         removeFromCart,
         updateQuantity,
         clearCart,
-        loading: !hasLoaded,
       }}
     >
       {children}

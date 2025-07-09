@@ -15,6 +15,8 @@ import { useAuth } from "./components/contexts/AuthContext";
 import { CategoryPage } from "./components/pages/CategoryPage";
 import { ProductPage } from "./components/pages/ProductPage";
 import { Checkout } from "./components/pages/Checkout";
+import { Privacypolicy } from "./components/pages/Privacypolicy";
+import { Termsofuse } from "./components/pages/Termsofuse";
 
 function LayoutWrapper()
 {
@@ -39,6 +41,8 @@ function LayoutWrapper()
         <Route path="/category/:categoryName" element={<CategoryPage />} />
         <Route path="/product/:id" element={<ProductPage/>}/>
         <Route path="/checkout" element={<Checkout/>}/>
+        <Route path="/privacy-policy" element={<Privacypolicy/>}/>
+        <Route path="/terms-of-use" element={<Termsofuse/>}/>
         {/* Optional: 404 page */}
         <Route path="*" element={<h2>Page Not Found</h2>} />
     </Routes>

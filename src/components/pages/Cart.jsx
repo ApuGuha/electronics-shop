@@ -1,9 +1,10 @@
 import { useCart } from "../contexts/CartContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,  useLocation } from "react-router-dom";
 
 export const Cart = () => {
   const { cartItems, addToCart, removeFromCart, updateQuantity, clearCart, loading } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const getTotal = () =>
     cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -16,6 +17,11 @@ export const Cart = () => {
       navigate("/signup");
     }
   };
+
+  const handleLoginRedirect = () => {
+  localStorage.setItem("redirectAfterLogin", location.pathname);
+  navigate("/login");
+};
 
   // Show loading state while cart is being loaded
   // if (loading) {
@@ -31,6 +37,9 @@ export const Cart = () => {
   return (
     <section className="section">
       <div className="container">
+         <div className="section_category">
+          <p className="section_category_p">Cart</p>
+        </div>
         <div className="cart">
           {cartItems.length === 0 ? (
             <div>

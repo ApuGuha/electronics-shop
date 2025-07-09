@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,  useLocation } from "react-router-dom";
 import { useWishlist } from "../contexts/WishlistContext";
 import { useCart } from "../contexts/CartContext";
 import { useAuth } from "../contexts/AuthContext";
@@ -11,6 +11,7 @@ export const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -26,6 +27,11 @@ export const Header = () => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+
+  const handleLoginRedirect = () => {
+  localStorage.setItem("redirectAfterLogin", location.pathname);
+  navigate("/login");
+};
 
   useEffect(() => {
   const fetchAndFilterProducts = async () => {
@@ -122,7 +128,7 @@ const handleProductClick = (productId) => {
                 <button onClick={logout}>Logout</button>
               </>
             ) : (
-              <Link to="/login" className="nav_link">Login</Link>
+              <button onClick={handleLoginRedirect} className="nav_link">Login</button>
             )}
           </div>
 

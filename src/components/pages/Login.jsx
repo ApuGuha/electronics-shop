@@ -1,6 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const Login = () => {
   const { login } = useAuth();
@@ -10,6 +10,17 @@ export const Login = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Save current page path for redirection after login
+  useEffect(() => {
+    const alreadySet = localStorage.getItem("redirectAfterLogin");
+    if (!alreadySet && location.state?.from) {
+      localStorage.setItem("redirectAfterLogin", location.state.from);
+    } else if (!alreadySet && location.pathname !== "/login") {
+      localStorage.setItem("redirectAfterLogin", location.pathname);
+    }
+  }, [location]);
 
   const validateEmail = (email) => {
     const regex = /^\S+@\S+\.\S+$/;
@@ -38,17 +49,15 @@ export const Login = () => {
 
     if (!valid) return;
 
-  try {
-    login(email, password);
+    try {
+      login(email, password);
 
-    const redirectTo = localStorage.getItem("redirectAfterLogin") || "/";
-    localStorage.removeItem("redirectAfterLogin");
-    navigate(redirectTo);
-  } 
-  catch (error) 
-  {
-    setErr(error.message);
-  }
+      const redirectTo = localStorage.getItem("redirectAfterLogin") || "/";
+      localStorage.removeItem("redirectAfterLogin");
+      navigate(redirectTo);
+    } catch (error) {
+      setErr(error.message);
+    }
   };
 
   return (
@@ -76,7 +85,9 @@ export const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              {emailError && <small style={{ color: "red" }}>{emailError}</small>}
+              {emailError && (
+                <small style={{ color: "red" }}>{emailError}</small>
+              )}
             </div>
 
             <div className="form_group form_pass">
@@ -87,7 +98,9 @@ export const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              {passwordError && <small style={{ color: "red" }}>{passwordError}</small>}
+              {passwordError && (
+                <small style={{ color: "red" }}>{passwordError}</small>
+              )}
             </div>
 
             <div className="form_group">

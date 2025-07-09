@@ -41,6 +41,7 @@ export const AuthProvider = ({children}) => {
             localStorage.removeItem(`cart_${user.email}`);
             localStorage.removeItem(`wishlist_${user.email}`);
         }
+        localStorage.removeItem('redirectAfterLogin'); // reset here
         setUser(null);
         localStorage.removeItem('loggedInUser');
 

@@ -4,49 +4,44 @@ const WishlistContext = createContext();
 
 export const useWishlist = () => useContext(WishlistContext);
 
-export const WishlistProvider = ({children, userId}) => {
+export const WishlistProvider = ({ children, userId }) => {
+  const storageKey = userId ? `wishlist_${userId}` : "guest_wishlist";
 
-    const [wishList, setWishList] = useState([]);
+  const [wishList, setWishList] = useState(() => {
+    const stored = localStorage.getItem(storageKey);
+    return stored ? JSON.parse(stored) : [];
+  });
 
-    // load from localstorage
+  // Sync wishlist to localStorage
+  useEffect(() => {
+    localStorage.setItem(storageKey, JSON.stringify(wishList));
+  }, [wishList, storageKey]);
 
-    useEffect(()=>{
-        if(userId)
-        {
-            const stored = localStorage.getItem(`wishlist-${userId}`);
-            setWishList(stored? JSON.parse(stored) : []);
-        }
-        else
-        {
-            setWishList([]);
-        }
-    }, [userId]);
+  // Reset wishlist when userId changes (e.g., login/logout)
+  useEffect(() => {
+    const stored = localStorage.getItem(storageKey);
+    setWishList(stored ? JSON.parse(stored) : []);
+  }, [storageKey]);
 
-    // Save to localStorage
-    useEffect(() => {
-        if (userId) {
-        localStorage.setItem(`wishlist-${userId}`, JSON.stringify(wishList));
-        }
-    }, [wishList, userId]);
+  const addToWishList = (product) => {
+    setWishList((prev) =>
+      prev.find((p) => p.id === product.id) ? prev : [...prev, product]
+    );
+  };
 
-    const addToWishList = (product) => {
-        setWishList((prev)=>
-            prev.find((p)=> p.id === product.id) ? prev : [...prev, product]
-        )
-    }
+  const removeFromWishlist = (productId) => {
+    setWishList((prev) => prev.filter((p) => p.id !== productId));
+  };
 
-    const removeFromWishlist = (productId) =>{
-        setWishList((prev) => prev.filter((p) => p.id !== productId));
-        localStorage.removeItem(`wishlist-${userId}`);
-    }
-
-    const isInWishlist = (productId) => {
+  const isInWishlist = (productId) => {
     return wishList.some((item) => item.id === productId);
-    };
+  };
 
-    return(
-        <WishlistContext.Provider value={{wishList, addToWishList, removeFromWishlist, isInWishlist}}>
-            {children}
-        </WishlistContext.Provider>
-    )
-}
+  return (
+    <WishlistContext.Provider
+      value={{ wishList, addToWishList, removeFromWishlist, isInWishlist }}
+    >
+      {children}
+    </WishlistContext.Provider>
+  );
+};

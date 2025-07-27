@@ -1,97 +1,60 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext();
+
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children, userId }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const storageKey = userId ? `cart_${userId}` : "guest_cart";
 
-  // Load from localStorage
-  useEffect(() => {
-    if(userId)
-    {
-       const guestCart = JSON.parse(localStorage.getItem('cart'));
-       const userCart = JSON.parse(localStorage.getItem(`cart-${userId}`));
-
-       if(guestCart && guestCart.length > 0 && (!userCart || userCart.length === 0))
-       {
-          localStorage.setItem(`cart-${userId}`, JSON.stringify(guestCart));
-          localStorage.removeItem('cart');
-          setCartItems(guestCart);
-       }
-       else
-       {
-        setCartItems(userCart || []);
-       }
-    }
-    else
-    {
-      const guestCart = JSON.parse(localStorage.getItem('cart'));
-      setCartItems(guestCart || []);
-    }
-  }, [userId]);
-
-  // Save to localStorage
-  useEffect(() => {
-    if (userId) {
-      localStorage.setItem(`cart-${userId}`, JSON.stringify(cartItems));
-    }
-    else
-    {
-      localStorage.setItem('cart', JSON.stringify(cartItems));
-    }
-  }, [cartItems, userId]);
-
-  // Add to cart logic
-  const addToCart = (product) => {
-  setCartItems((prev) => {
-    const existingIndex = prev.findIndex(
-      (item) =>
-        item.id === product.id &&
-        item.color === product.color &&
-        item.size === product.size
-    );
-
-    if (existingIndex !== -1) {
-      const updatedItems = [...prev];
-
-      // Make sure both values are numbers!
-      const existingQty = Number(updatedItems[existingIndex].quantity);
-      const incomingQty = Number(product.quantity);
-
-      updatedItems[existingIndex] = {
-        ...updatedItems[existingIndex],
-        quantity: existingQty + incomingQty,
-      };
-
-      return updatedItems;
-    } else {
-      // Defensive copy with correct quantity
-      return [...prev, { ...product, quantity: Number(product.quantity) }];
-    }
+  // Load cart from localStorage initially
+  const [cartItems, setCartItems] = useState(() => {
+    const saved = localStorage.getItem(storageKey);
+    return saved ? JSON.parse(saved) : [];
   });
-};
 
+  // Sync cart to localStorage whenever cartItems changes
+  useEffect(() => {
+    localStorage.setItem(storageKey, JSON.stringify(cartItems));
+  }, [cartItems, storageKey]);
 
-  // ✅ Remove based on id + color + size
-  const removeFromCart = (productId, color, size) => {
+  const addToCart = (item) => {
+    setCartItems((prev) => {
+      const existingItem = prev.find(
+        (i) =>
+          i.id === item.id &&
+          i.color === item.color &&
+          i.size === item.size
+      );
+
+      if (existingItem) {
+        return prev.map((i) =>
+          i.id === item.id &&
+          i.color === item.color &&
+          i.size === item.size
+            ? { ...i, quantity: i.quantity + item.quantity }
+            : i
+        );
+      } else {
+        return [...prev, item];
+      }
+    });
+  };
+
+  const removeFromCart = (id, color, size) => {
     setCartItems((prev) =>
       prev.filter(
-        (item) =>
-          !(item.id === productId && item.color === color && item.size === size)
+        (i) => i.id !== id || i.color !== color || i.size !== size
       )
     );
   };
 
-  // ✅ Update quantity based on id + color + size
-  const updateQuantity = (productId, color, size, quantity) => {
+  const updateQuantity = (id, color, size, quantity) => {
     setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === productId &&
-        item.color === color &&
-        item.size === size
-          ? { ...item, quantity: Number(quantity) }
-          : item
+      prev.map((i) =>
+        i.id === id && i.color === color && i.size === size
+          ? { ...i, quantity }
+          : i
       )
     );
   };
@@ -102,7 +65,13 @@ export const CartProvider = ({ children, userId }) => {
 
   return (
     <CartContext.Provider
-      value={{ cartItems,addToCart, removeFromCart, updateQuantity, clearCart }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        clearCart,
+      }}
     >
       {children}
     </CartContext.Provider>

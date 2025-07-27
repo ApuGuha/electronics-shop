@@ -10,9 +10,9 @@ export const Checkout = () => {
 
   useEffect(()=>{
     const user = JSON.parse(localStorage.getItem('loggedInUser'));
-    if(!user)
-    {
-      navigate('/signup');
+    if (!user) {
+      localStorage.setItem('redirectAfterLogin', '/checkout');
+      navigate('/signup'); // or '/login'
     }
 
   }, []);

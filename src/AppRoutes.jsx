@@ -17,11 +17,14 @@ import { ProductPage } from "./components/pages/ProductPage";
 import { Checkout } from "./components/pages/Checkout";
 import { Privacypolicy } from "./components/pages/Privacypolicy";
 import { Termsofuse } from "./components/pages/Termsofuse";
+import { Breadcrumb } from "./components/Breadcrumb";
 
 function LayoutWrapper()
 {
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const hiddenBreadcrumbPaths = ["/login", "/signup", "/404", "/"];
+  const isBreadcrumbVisible = !hiddenBreadcrumbPaths.includes(location.pathname) && !location.pathname.startsWith("/404");
   
   
 
@@ -29,6 +32,9 @@ function LayoutWrapper()
     <>
     <Header/>
     {isHome && <Sidemenu/>}
+
+    {/* Show breadcrumb only when path is NOT in the excluded list */}
+    {isBreadcrumbVisible && <Breadcrumb />}
     <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -39,7 +45,7 @@ function LayoutWrapper()
         <Route path="/signup" element= {<Signup/>}/>
         <Route path="/login" element= {<Login/>}/>
         <Route path="/category/:categoryName" element={<CategoryPage />} />
-        <Route path="/product/:id" element={<ProductPage/>}/>
+        <Route path="/product/:slug" element={<ProductPage/>}/>
         <Route path="/checkout" element={<Checkout/>}/>
         <Route path="/privacy-policy" element={<Privacypolicy/>}/>
         <Route path="/terms-of-use" element={<Termsofuse/>}/>

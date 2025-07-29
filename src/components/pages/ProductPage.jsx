@@ -12,7 +12,7 @@ import 'swiper/css/thumbs';
 export const ProductPage = () => {
   const { slug } = useParams();
   const { addToCart } = useCart();
-
+ 
   const [product, setProduct] = useState(null);
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
@@ -20,7 +20,7 @@ export const ProductPage = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
-
+ 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 1024);
@@ -28,7 +28,7 @@ export const ProductPage = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
+ 
   useEffect(() => {
     fetch('/data.json')
       .then((res) => res.json())
@@ -37,11 +37,11 @@ export const ProductPage = () => {
         setProduct(found);
       });
   }, [slug]);
-
+ 
   const handleAddToCart = () => {
     const hasColor = Array.isArray(product.color) && product.color.length > 0;
     const hasSize = Array.isArray(product.size) && product.size.length > 0;
-
+ 
     if (hasColor && !selectedColor) {
       alert('Please select a color');
       return;
@@ -50,7 +50,7 @@ export const ProductPage = () => {
       alert('Please select a size');
       return;
     }
-
+ 
     const cartItem = {
       id: product.id,
       name: product.name,
@@ -60,10 +60,10 @@ export const ProductPage = () => {
       size: hasSize ? selectedSize : null,
       quantity: Number(quantity),
     };
-
+ 
     addToCart(cartItem);
   };
-
+ 
   if (!product) return <div>Loading product...</div>;
 
   return (
@@ -85,14 +85,7 @@ export const ProductPage = () => {
               {product.image.map((src, index) => (
                 <SwiperSlide key={index} onClick={() => setActiveIndex(index)}>
                   <div
-                    className="ratio ratio-4x3"
-                    style={{
-                      border: activeIndex === index ? '2px solid #db4444' : '1px solid #ddd',
-                      borderRadius: '6px',
-                      cursor: 'pointer',
-                      padding: '2px'
-                    }}
-                  >
+                    className="ratio ratio-4x3">
                     <img src={src} alt={`thumb-${index}`} style={{ width: "100%", borderRadius: 4 }} />
                   </div>
                 </SwiperSlide>
@@ -136,12 +129,14 @@ export const ProductPage = () => {
                 <label
                   key={i}
                   style={{
-                    padding: '4px 8px',
-                    marginRight: '10px',
-                    border: selectedColor === clr ? '1px solid #db4444' : '1px solid #ccc',
-                    backgroundColor: selectedColor === clr ? '#db4444' : 'transparent',
-                    color: selectedColor === clr ? '#fff' : '#000',
-                    cursor: 'pointer'
+                    display: 'inline-block',
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
+                    backgroundColor: clr,
+                    // border: selectedColor === clr ? '2px solid #ddd' : '2px solid #ccc',
+                    cursor: 'pointer',
+                    position: 'relative'
                   }}
                 >
                   <input
@@ -152,11 +147,26 @@ export const ProductPage = () => {
                     onChange={(e) => setSelectedColor(e.target.value)}
                     style={{ display: 'none' }}
                   />
-                  {clr}
+                  {/* Show a check mark or inner border when selected */}
+                  {selectedColor === clr && (
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: '12px',
+                        height: '12px',
+                        borderRadius: '50%',
+                        background: '#fff'
+                      }}
+                    />
+                  )}
                 </label>
               ))}
             </div>
           )}
+
 
           {/* Size Selection */}
           {product.size?.length > 0 && (
@@ -168,8 +178,6 @@ export const ProductPage = () => {
                     key={i}
                     htmlFor={`size-${sz}`}
                     style={{
-                      padding: '4px 8px',
-                      marginRight: '10px',
                       border: selectedSize === sz ? '1px solid #db4444' : '1px solid #ccc',
                       backgroundColor: selectedSize === sz ? '#db4444' : 'transparent',
                       color: selectedSize === sz ? '#fff' : '#000',

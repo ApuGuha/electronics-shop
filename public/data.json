@@ -10,20 +10,21 @@
     "stock": 120,
     "rating": 4.5,
     "tag": "flash-sale",
-    "color": ["red", "blue"]
+    "color": ["pink", "blue"],
+    "size":[]
   },
   {
     "id": 2,
-    "name": "AK-900 Wired Keyboard",
-    "slug": "ak-900-wired-keyboard",
-    "description": "Portronics Ki-Pad 2 wired keyboard with dual-color keys, multimedia hotkeys, USB-A cable, and spill-resistant design. Compatible with Windows, Linux, and macOS.",
+    "name": "AK-900 Wipink Keyboard",
+    "slug": "ak-900-wipink-keyboard",
+    "description": "Portronics Ki-Pad 2 wipink keyboard with dual-color keys, multimedia hotkeys, USB-A cable, and spill-resistant design. Compatible with Windows, Linux, and macOS.",
     "price": 80,
     "image": ["/image/items/item-2.png", "/image/items/item-2.png"],
     "category": "electronics",
     "stock": 45,
     "rating": 4.8,
     "tag": ["flash-sale"],
-    "color": ["red", "blue"],
+    "color": ["pink", "blue"],
     "size": ["XS", "S", "M", "L", "XL"]
   },
   {
@@ -37,7 +38,7 @@
     "stock": 80,
     "rating": 4.2,
     "tag": ["best-seller"],
-    "color": ["red", "blue", "black", "white"],
+    "color": ["pink", "blue", "black", "yellow"],
     "size": ["XS", "S", "M", "L", "XL"]
   },
   {
@@ -51,7 +52,7 @@
     "stock": 60,
     "rating": 4.4,
     "tag": ["best-seller"],
-    "color": ["red", "black", "white"],
+    "color": ["pink", "black", "yellow"],
     "size": ["S", "M", "L", "XL"]
   },
   {
@@ -65,7 +66,7 @@
     "stock": 30,
     "rating": 4.7,
     "tag": ["flash-sale", "best-seller"],
-    "color": ["red", "blue", "black"],
+    "color": ["pink", "blue", "black"],
     "size": ["XS", "M", "L", "XL"]
   },
   {
@@ -93,7 +94,7 @@
     "stock": 30,
     "rating": 4.7,
     "tag": ["flash-sale", "best-seller"],
-    "color": ["blue", "black", "white"],
+    "color": ["blue", "black", "yellow"],
     "size": ["XS", "S", "M", "L"]
   },
   {
@@ -107,7 +108,7 @@
     "stock": 30,
     "rating": 4.7,
     "tag": ["best-seller"],
-    "color": ["red", "blue", "black"],
+    "color": ["pink", "blue", "black"],
     "size": ["S", "M", "L", "XL"]
   },
   {
@@ -121,7 +122,7 @@
     "stock": 30,
     "rating": 4.7,
     "tag": ["flash-sale", "best-seller"],
-    "color": ["red", "blue", "black", "white"],
+    "color": ["pink", "blue", "black", "yellow"],
     "size": ["XS", "M", "L", "XL"]
   },
   {
@@ -135,7 +136,7 @@
     "stock": 30,
     "rating": 4.7,
     "tag": ["best-seller"],
-    "color": ["red", "blue", "black"],
+    "color": ["pink", "blue", "black"],
     "size": ["XS", "S", "M", "L", "XL"]
   },
   {
@@ -149,14 +150,14 @@
     "stock": 30,
     "rating": 4.7,
     "tag": ["flash-sale", "best-seller"],
-    "color": ["red", "blue", "white"],
+    "color": ["pink", "blue", "yellow"],
     "size": ["S", "M", "L", "XL"]
   },
   {
     "id": 12,
     "name": "Beauty Cream and Facewash",
     "slug": "beauty-cream-and-facewash",
-    "description": "A skincare combo pack including a nourishing beauty cream and a gentle facewash. Helps brighten the skin, reduce blemishes, and keep your face feeling fresh and hydrated.",
+    "description": "A skincare combo pack including a nourishing beauty cream and a gentle facewash. Helps brighten the skin, pinkuce blemishes, and keep your face feeling fresh and hydrated.",
     "price": 110,
     "image": ["/image/items/item-16.png", "/image/items/item-16.png"],
     "category": "health-and-beauty",
@@ -177,7 +178,7 @@
     "stock": 30,
     "rating": 4.7,
     "tag": ["playstation"],
-    "color": ["red", "blue", "black"],
+    "color": ["pink", "blue", "black"],
     "size": ["XS", "M", "L", "XL"]
   },
   {
@@ -191,7 +192,7 @@
     "stock": 30,
     "rating": 4.7,
     "tag": ["playstation"],
-    "color": ["red", "blue", "black"],
+    "color": ["pink", "blue", "black"],
     "size": ["XS", "S", "L", "XL"]
   },
   {
@@ -205,7 +206,7 @@
     "stock": 30,
     "rating": 4.7,
     "tag": ["playstation"],
-    "color": ["red", "blue"],
+    "color": ["pink", "blue"],
     "size": ["XS", "S", "M", "XL"]
   },
   {
@@ -219,7 +220,7 @@
     "stock": 30,
     "rating": 4.7,
     "tag": ["playstation"],
-    "color": ["red", "white", "black"],
+    "color": ["pink", "yellow", "black"],
     "size": ["XS", "S", "M", "L"]
   }
 ]

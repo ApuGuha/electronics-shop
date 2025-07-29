@@ -258,12 +258,26 @@ ul {
 .container_btn {
   width: 100%;
   text-align: center;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.total-price-cart {
+  text-align: right;
+  padding: 30px;
+  border: 1px solid #ddd;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
 }
 .container_btn_a {
   background-color: var(--colo-primary);
   color: var(--colo-white-1);
   padding: 1.6rem 3rem;
   border-radius: 0.5rem;
+  border: none;
+  font-family: "Poppins", sans-serif;
 }
 
 /* categories */
@@ -1382,4 +1396,23 @@ input[type="number"] {
 }
 .filter-option label input {
   margin-right: 10px;
+}
+.t-header {
+  width: 20%;
+  text-align: center;
+}
+
+.cmn-cart-item {
+  width: 20%;
+  text-align: center;
+}
+.cart_item_quantity input {
+  width: 70px;
+  height: 30px;
+  padding: 4px 8px;
+  text-align: center;
+}
+.cart_item_image img {
+  width: 100%;
+  padding: 15px;
 }

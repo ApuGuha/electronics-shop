@@ -2,8 +2,8 @@
 
 export const Filters = ({ filters, onChange}) => {
 
-    const colors = ["red", "blue", "black"];
-    const sizes = ["8", "9", "10"];
+    const colors = ["red", "blue", "black", "white"];
+    const sizes = ["XS", "S", "M", "L", "XL"];
 
     const handleCheckboxChange = (e, type) => {
 

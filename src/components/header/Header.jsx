@@ -113,11 +113,11 @@ const handleProductClick = (productId) => {
               )}
             </div>
             <Link to="/wishlist">
-              <img src="./image/heart.png" alt="" className="nav_heart" />
+              <img src="/image/heart.png" alt="" className="nav_heart" />
               {wishList.length > 0 && `(${wishList.length})`}
             </Link>
             <Link to="/cart" className="nav_cart_link">
-              <img src="./image/cart.png" alt="Cart" className="nav_cart" />
+              <img src="/image/cart.png" alt="Cart" className="nav_cart" />
               {!loading && cartItems.length > 0 && (
                 <span className="cart_count">({cartItems.length})</span>
               )}

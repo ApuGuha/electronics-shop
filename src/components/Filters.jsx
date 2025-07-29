@@ -23,9 +23,10 @@ export const Filters = ({ filters, onChange}) => {
         
   return (
     <div className="filters">
-        <div>
-            <p><strong>Filter by Color:</strong></p>
-            {
+        <div className="color-filter cmn-filter-div">
+            <h3>Shop by Color:</h3>
+            <div className="filter-option">
+                {
                 colors.map((color)=> (
                     <label key={color}>
                         <input
@@ -38,10 +39,12 @@ export const Filters = ({ filters, onChange}) => {
                     </label>
                 ))
             }
+            </div>
         </div>
-        <div>
-            <p><strong>Filter by Size:</strong></p>
-            {
+        <div className="size-filter cmn-filter-div">
+            <h3>Shop by Size:</h3>
+            <div className="filter-option">
+                {
                 sizes.map((size)=> (
                     <label key={size}>
                         <input
@@ -54,9 +57,11 @@ export const Filters = ({ filters, onChange}) => {
                     </label>
                 ))
             }
+            </div>
         </div>
-        <div>
-            <p><strong>Price:</strong></p>
+        <div className="price-filter cmn-filter-div">
+            <h3>Shop by Price:</h3>
+            <div>
             <input
             type="range"
             min="0"
@@ -64,6 +69,7 @@ export const Filters = ({ filters, onChange}) => {
             value={filters.price}
             onChange={handleRangeChange}
             />
+            </div>
         </div>
     </div>
   )

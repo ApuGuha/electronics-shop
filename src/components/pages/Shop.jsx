@@ -58,9 +58,13 @@ export const Shop = () => {
           <h3 className="section_title">Explore Our Products</h3>
           <p id="demo"></p>
         </div>
+        <div className="product-listing">
+          <div className="product-filter">
+          <Filters filters={filters} onChange={handleFilterChange} />
+        </div>
         <div className="products">
-            <Filters filters={filters} onChange={handleFilterChange} />
             <ProductList products={filteredProducts} />
+        </div>
         </div>
         <Pagination totalPages={totalPages} currentPage={currentPage} goToNextPage={goToNextPage} goToPrevPage={goToPrevPage}/>
       </div>

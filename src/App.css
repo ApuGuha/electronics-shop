@@ -218,17 +218,28 @@ ul {
   z-index: 9;
   top: 1rem;
   right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.card_top_icons a {
+  color: #000;
 }
 .card_top_icon {
-  width: 3.4rem;
-  height: 3.4rem;
+  width: 40px;
+  height: 40px;
   padding: 1rem;
   background-color: var(--colo-white-1);
   border-radius: 10rem;
 }
+.card_top_icon:hover {
+  background-color: var(--colo-primary);
+  color: #fff;
+}
 .card_body {
   margin-top: 1rem;
   text-align: left;
+  position: relative;
 }
 .card_title {
   font-size: 1.6rem;
@@ -524,7 +535,20 @@ ul {
   cursor: pointer;
   border: none;
   outline: none;
-  margin-top: 2rem;
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  font-size: 16px;
+  position: absolute;
+  top: -47px;
+  display: none;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.add_to_cart:hover {
+  background-color: var(--colo-dark-1);
+}
+.card:hover .add_to_cart {
+  display: block;
 }
 
 /* Authentications */
@@ -1296,4 +1320,66 @@ input[type="number"] {
   .quantity-wrapper input {
     width: 50px;
   }
+}
+
+/* CSS for SHOP PAGE */
+
+.product-listing {
+  display: flex;
+  gap: 20px;
+}
+.product-filter {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding: 0px 15px;
+}
+.card_title {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+.pagination {
+  text-align: center;
+}
+.filters h3 {
+  font-size: 18px;
+  color: #111111;
+  font-weight: 500;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 25px;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+}
+.filters h3:after {
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  height: 2px;
+  width: 70px;
+  background: var(--colo-primary);
+  content: "";
+}
+.cmn-filter-div:not(:last-child) {
+  margin-bottom: 50px;
+}
+.price-filter input {
+  width: 100%;
+}
+.filter-option {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+.filter-option label {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+.filter-option label input {
+  margin-right: 10px;
 }

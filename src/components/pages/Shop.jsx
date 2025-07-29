@@ -80,18 +80,15 @@ export const Shop = () => {
         <div className="section_header">
           <h3 className="section_title">Explore Our Products</h3>
         </div>
-
-        <div className="products">
+        <div className="product-listing">
+          <div className="product-filter">
           <Filters filters={filters} onChange={handleFilterChange} />
-          <ProductList products={currentProducts} />
         </div>
-
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          goToNextPage={goToNextPage}
-          goToPrevPage={goToPrevPage}
-        />
+        <div className="products">
+            <ProductList products={filteredProducts} />
+        </div>
+        </div>
+        <Pagination totalPages={totalPages} currentPage={currentPage} goToNextPage={goToNextPage} goToPrevPage={goToPrevPage}/>
       </div>
     </section>
   );

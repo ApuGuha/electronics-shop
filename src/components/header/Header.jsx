@@ -61,7 +61,6 @@ const handleProductClick = (productId) => {
     setFilteredResults([]);
     navigate(`/product/${productId}`);
   };
-
   return (
     <>
       <div className="top_nav">
@@ -104,7 +103,7 @@ const handleProductClick = (productId) => {
                     <li
                       key={product.id}
                       className="search_dropdown_item"
-                      onClick={() => handleProductClick(product.id)}
+                      onClick={() => handleProductClick(product.slug)}
                     >
                       {product.name}
                     </li>
@@ -127,11 +126,10 @@ const handleProductClick = (productId) => {
             </Link>
             {user ? (
               <>
-                <span>Welcome, {user.name}</span>
-                <button onClick={logout}>Logout</button>
+                <button onClick={logout} className="user_logout">{user.name.slice(0, 2).toUpperCase()}</button>
               </>
             ) : (
-              <button onClick={handleLoginRedirect} className="nav_link">Login</button>
+              <button onClick={handleLoginRedirect} className="login_link">Login</button>
             )}
           </div>
 

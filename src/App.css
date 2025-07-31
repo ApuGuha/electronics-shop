@@ -120,16 +120,46 @@ ul {
 .nav_items {
   display: flex;
   align-items: center;
+  gap : 10px;
 }
 .nav_heart {
-  margin-left: 1rem;
   cursor: pointer;
+  width : 22px;
 }
 .nav_cart {
-  margin-left: 1rem;
+  cursor: pointer;
+  width : 28px;
+}
+
+.search_dropdown {
+
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--colo-white-1);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search_dropdown_item {
+  padding: 5px 0px;
+  margin: 0px 10px;
+  border-bottom: 1px solid var(--colo-dark-2);
+  color: var(--colo-dark-1);
   cursor: pointer;
 }
 
+.user_logout{
+
+  border-radius: 50%;
+  color: #fff;
+  background-color: var(--colo-primary);
+  padding: 5px;
+  cursor: pointer;
+  border: none;
+  height: 32px;
+  width: 32px;
+}
 /* header */
 .header_container {
   width: 100%;
@@ -1415,4 +1445,266 @@ input[type="number"] {
 .cart_item_image img {
   width: 100%;
   padding: 15px;
+}
+
+/* checkout page css */
+
+.checkout-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 50px;
+  max-width: 114rem;
+  margin: auto;
+}
+
+.billing-details {
+  padding-right: 30px;
+}
+
+.billing-details h2 {
+  margin-bottom: 20px;
+}
+
+.billing-details label {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: rgb(0 0 0 / 40%);
+  font-family: "Poppins", sans-serif;
+}
+.billing-details label {
+  margin-bottom: 32px;
+}
+
+.billing-details  label span {
+  color: rgba(219, 68, 68, 0.4);
+}
+
+.billing-details input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  height: 50px;
+}
+
+.save-info {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.save-info input {
+  margin-right: 8px;
+}
+
+.order-summary {
+  background: #fff;
+  font-family: "Poppins", sans-serif;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.item img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.total-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #ababab;
+  font-size: 16px;
+}
+
+.total {
+  border: none;
+}
+
+.payment {
+  margin: 20px 0;
+  font-size: 14px;
+}
+
+.payment .icons img {
+  margin: 5px;
+}
+
+.coupon {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.coupon input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 300px;
+  height: 55px;
+  font-family: "Poppins", sans-serif;
+}
+
+.coupon .btn {
+  background: #e94e47;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+}
+
+.place-order {
+  background: #e94e47;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 190px;
+  height: 55px;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+}
+.checkout-section {
+  margin-top: 80px;
+}
+.checkout-section h2 {
+  text-align: left;
+  max-width: 114rem;
+  margin: auto;
+  padding: 0rem 1rem;
+  margin-bottom: 50px;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.save-info input[type="checkbox"] {
+  margin: 0px;
+  width: auto;
+}
+.save-info label {
+  margin-bottom: 0px !important;
+}
+.order-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.order-item .item-det {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.item-det img {
+  width : 50px;
+}
+
+.save-info input[type="checkbox"] {
+  display: none; /* hide default checkbox */
+}
+
+.save-info input[type="checkbox"] + label {
+  position: relative;
+  padding-left: 40px;
+  cursor: pointer;
+  color: #000;
+}
+
+.save-info input[type="checkbox"] + label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #c0c0c0;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.save-info input[type="checkbox"]:checked + label::before {
+  background: #e94e47;
+  border: 1px solid #e94e47;
+}
+
+.save-info input[type="checkbox"]:checked + label::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 15px;
+  height: 15px;
+  background: url("../image/icons/check.png") no-repeat center center;
+  background-size: contain;
+}
+.for-cod label {
+  font-size: 16px;
+}
+
+/* Hide default radio */
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Outer circle */
+input[type="radio"] + label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000000; /* Border color */
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* Inner dot */
+input[type="radio"]:checked + label::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  background: #000000;
+  border-radius: 50%;
+}
+
+/* Header login button */
+
+.login_link{
+    background: #e94e47;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
 }

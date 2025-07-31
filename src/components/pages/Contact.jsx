@@ -92,6 +92,7 @@ export const Contact = () => {
         <div className="con-body-right">
           <form onSubmit={handleRegisterContact}>
             <div className="form-row">
+              <div>
               <input
                 type="text"
                 placeholder="Your Name *"
@@ -99,8 +100,9 @@ export const Contact = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-              {nameError && <small style={{ color: "red" }}>{nameError}</small>}
-
+              {nameError && <small style={{ color: "red" , display: "block"}}>{nameError}</small>}
+              </div>
+              <div>
               <input
                 type="email"
                 placeholder="Your Email *"
@@ -108,8 +110,9 @@ export const Contact = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              {emailError && <small style={{ color: "red" }}>{emailError}</small>}
-
+              {emailError && <small style={{ color: "red" , display: "block"}}>{emailError}</small>}
+              </div>
+              <div>
               <input
                 type="tel"
                 placeholder="Your Phone *"
@@ -117,15 +120,17 @@ export const Contact = () => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
-              {phoneError && <small style={{ color: "red" }}>{phoneError}</small>}
+              {phoneError && <small style={{ color: "red" , display: "block"}}>{phoneError}</small>}
+              </div>
             </div>
-
+            <div>
             <textarea
               placeholder="Your Message"
               name="message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
+            </div>
 
             <div className="form-actions">
               <button type="submit">Send Message</button>

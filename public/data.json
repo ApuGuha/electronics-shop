@@ -10,7 +10,8 @@
     "stock": 120,
     "rating": 4.5,
     "tag": "flash-sale",
-    "color": ["red", "blue"]
+    "color": ["red", "blue"],
+    "size": []
   },
   {
     "id": 2,

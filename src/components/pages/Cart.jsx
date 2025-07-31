@@ -51,26 +51,26 @@ export const Cart = () => {
           ) : (
             <>
               <div className="cart_header">
-                <p className="cart_header_title">Product Title</p>
-                <p className="cart_header_image">Product Image</p>
-                <p className="cart_header_quantity">Product Quantity</p>
-                <p className="cart_header_price">Price</p>
-                <p className="cart_header_delete">Delete</p>
+                <p className="cart_header_title t-header">Product Title</p>
+                <p className="cart_header_image t-header">Product Image</p>
+                <p className="cart_header_quantity t-header">Product Quantity</p>
+                <p className="cart_header_price t-header">Price</p>
+                <p className="cart_header_delete t-header">Delete</p>
               </div>
               <div className="cart-items">
                 {cartItems.map((item) => (
                   <div
-                    className="cart_item"
+                    className="cart_item t-body"
                     key={`${item.id}-${item.color}-${item.size}`}
                   >
-                    <p className="cart_item_title">{item.name}</p>
-                    <div className="cart_item_image">
+                    <div className="cart_item_title cmn-cart-item"><h4>{item.name}</h4></div>
+                    <div className="cart_item_image cmn-cart-item">
                       <img
                         src={`${import.meta.env.VITE_SITE_URL}${item.image[0]}`}
                         alt={item.name}
                       />
                     </div>
-                    <div className="cart_item_quantity">
+                    <div className="cart_item_quantity cmn-cart-item">
                       <input
                         type="number"
                         min="1"
@@ -83,22 +83,25 @@ export const Cart = () => {
                         }}
                       />
                     </div>
-                    <p className="cart_item_price">
+                    <div className="cart_item_price cmn-cart-item">
                       ${(item.price * item.quantity).toFixed(2)}
-                    </p>
-                    <button
+                    </div>
+                    <div className="cart_item_delete cmn-cart-item">
+                        <button
                       onClick={() =>
                         removeFromCart(item.id, item.color, item.size)
                       }
-                      className="cart_item_delete"
+                      
                       aria-label="Remove item from cart"
                     >
                       🗑️
                     </button>
+                    </div>
+                    
                   </div>
                 ))}
               </div>
-              <h3>Total: ${getTotal().toFixed(2)}</h3>
+              <h3 className="total-price-cart">Total: ${getTotal().toFixed(2)}</h3>
               <div className="container_btn">
                 <button onClick={clearCart} className="container_btn_a">
                   Clear Cart

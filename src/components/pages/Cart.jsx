@@ -43,7 +43,7 @@ export const Cart = () => {
         <div className="cart">
           {cartItems.length === 0 ? (
             <div>
-              <p>Your cart is empty</p>
+              <p className="cart_empty">Your cart is empty</p>
               <button onClick={() => navigate("/shop")} className="container_btn_a">
                 Continue Shopping
               </button>

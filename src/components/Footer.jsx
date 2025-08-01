@@ -50,10 +50,10 @@ export const Footer = () => {
         <div className="footer-col">
           <h4>Social Links</h4>
           <div className="social-icons">
-            <img src="image/icons/Icon-Facebook.png" width="22" height="22" alt=""/>
-            <img src="image/icons/Icon-Twitter.png"width="22" height="24" alt=""/>
-            <img src="image/icons/icon-instagram.png"width="22" height="22" alt=""/>
-            <img src="image/icons/Icon-Linkedin.png" width="22" height="22" alt=""/>
+            <Link to="#"><img src="image/icons/Icon-Facebook.png" width="22" height="22" alt=""/></Link>
+            <Link to="#"><img src="image/icons/Icon-Twitter.png"width="22" height="24" alt=""/></Link>
+            <Link to="#"><img src="image/icons/icon-instagram.png"width="22" height="22" alt=""/></Link>
+            <Link to="#"><img src="image/icons/Icon-Linkedin.png" width="22" height="22" alt=""/></Link>
           </div>
         </div>
       </div>

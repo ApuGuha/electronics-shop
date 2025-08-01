@@ -111,7 +111,7 @@ const handleProductClick = (productId) => {
                 </ul>
               )}
             </div>
-            <Link to="/wishlist">
+            <Link to="/wishlist" className="nav_wish_link">
               <img src="/image/heart.png" alt="" className="nav_heart" />
               
               {!loading && wishList.length > 0 && (

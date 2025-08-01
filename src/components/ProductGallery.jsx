@@ -29,7 +29,7 @@ export const ProductGallery = ({tagName}) => {
                 <p className="gallery_item_p">
                     {product?.description}
                 </p>
-                <Link to={`/product/${product.id}`} className="gallery_item_link">SHOP NOW</Link>
+                <Link to={`/product/${product.slug}`} className="gallery_item_link">SHOP NOW</Link>
                 </div>
             </div>
             ))}

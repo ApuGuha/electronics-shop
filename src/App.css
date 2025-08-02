@@ -714,6 +714,16 @@ ul {
   display: none;
 }
 
+.mobile_nav_header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.mobile_nav_close {
+  font-size: 2rem;
+  cursor: pointer;
+} 
 /* Cart page */
 .cart {
   width: 100%;

@@ -55,7 +55,7 @@ export const ProductPage = () => {
       id: product.id,
       name: product.name,
       price: product.price,
-      image: product.image[activeIndex],
+      image: product.image,
       color: hasColor ? selectedColor : null,
       size: hasSize ? selectedSize : null,
       quantity: Number(quantity),

@@ -19,10 +19,10 @@ export const CategoryPage = () => {
   const [filters, setFilters] = useState({
     color: [],
     size: [],
-    price: 200
+    price: 200,
   });
 
-  // Handle filter changes from Filters component
+  // Handle filter changes
   const handleFilterChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -37,11 +37,10 @@ export const CategoryPage = () => {
       return { ...prev, [name]: value };
     });
 
-    // Reset to first page on filter change
-    setCurrentPage(1);
+    setCurrentPage(1); // Reset to first page when filters change
   };
 
-  // Fetch and filter products by category on mount/category change
+  // Load products on mount or category change
   useEffect(() => {
     fetch("/data.json")
       .then((res) => res.json())
@@ -55,7 +54,7 @@ export const CategoryPage = () => {
       .catch((err) => console.error("Error loading products:", err));
   }, [categoryName]);
 
-  // Apply filters BEFORE pagination
+  // Filter products
   const filteredProducts = products.filter((item) => {
     const matchesColor =
       filters.color.length === 0 ||
@@ -72,7 +71,7 @@ export const CategoryPage = () => {
     return matchesColor && matchesSize && matchesPrice;
   });
 
-  // Pagination logic AFTER filtering
+  // Paginate filtered products
   const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
   const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
   const currentPageProducts = filteredProducts.slice(
@@ -94,18 +93,31 @@ export const CategoryPage = () => {
         <div className="section_category">
           <p className="section_category_p">Category: {formatted}</p>
         </div>
+
         <div className="section_header">
           <h3 className="section_title">Explore Our Products</h3>
         </div>
+
         <div className="product-listing">
           <div className="product-filter">
-          <Filters filters={filters} onChange={handleFilterChange} />
+            <Filters filters={filters} onChange={handleFilterChange} />
+          </div>
+
+          <div className="products">
+            {/* ✅ Show only products on current page */}
+            <ProductList products={currentPageProducts} />
+          </div>
         </div>
-        <div className="products">
-            <ProductList products={filteredProducts} />
-        </div>
-        </div>
-        <Pagination totalPages={totalPages} currentPage={currentPage} goToNextPage={goToNextPage} goToPrevPage={goToPrevPage}/>
+
+        {/* ✅ Show pagination only when needed */}
+        {totalPages > 1 && (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            goToNextPage={goToNextPage}
+            goToPrevPage={goToPrevPage}
+          />
+        )}
       </div>
     </section>
   );

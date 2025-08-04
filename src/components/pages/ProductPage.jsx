@@ -118,7 +118,7 @@ export const ProductPage = () => {
             ⭐<span>{product.rating}</span> |{' '}
             <span style={{ color: '#00FF66' }}>In Stock</span>
           </div>
-          <div className="price">₹{product.price}</div>
+          <div className="price">${product.price}</div>
           <p>{product.description}</p>
 
           {/* Color Selection */}

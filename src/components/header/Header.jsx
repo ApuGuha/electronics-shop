@@ -98,12 +98,17 @@ export const Header = () => {
       <nav className="nav">
         <div className="container nav_container">
           <Link to="/" className="nav_logo">
-            EXCLUSIVE
+            <img src="/image/nexa-logo.png" alt="logo" className="header_logo" />
           </Link>
           <ul className="nav_list">
             <li className="nav_item">
               <Link to="/" className="nav_link">
                 Home
+              </Link>
+            </li>
+            <li className="nav_item">
+              <Link to="/shop" className="nav_link">
+                Shop
               </Link>
             </li>
             <li className="nav_item">
@@ -205,6 +210,11 @@ export const Header = () => {
           <li className="mobile_nav_item">
             <Link to="/" className="mobile_nav_link" onClick={closeMobileMenu}>
               Home
+            </Link>
+          </li>
+          <li className="mobile_nav_item">
+            <Link to="/shop" className="mobile_nav_link" onClick={closeMobileMenu}>
+              Shop
             </Link>
           </li>
           <li className="mobile_nav_item">

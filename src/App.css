@@ -102,6 +102,9 @@ ul {
   padding: 0.6rem;
   color: var(--colo-dark-1);
 }
+.nav_link:hover {
+  color: var(--colo-primary);
+}
 .nav_form {
   padding: 0.8rem;
   background-color: var(--colo-white-2);
@@ -176,6 +179,9 @@ ul {
 }
 .header_filter_link {
   color: var(--colo-dark-1);
+}
+.header_filter_link:hover {
+  color: var(--colo-primary);
 }
 
 /* section */
@@ -320,6 +326,7 @@ ul {
   border-radius: 0.5rem;
   border: none;
   font-family: "Poppins", sans-serif;
+  cursor: pointer;
 }
 
 /* categories */
@@ -332,16 +339,18 @@ ul {
 .category {
   text-align: center;
   padding: 3rem;
-  border: 1px solid var(--colo-white-2);
+  border-radius: 4px;
+  border: 1px solid rgb(0 0 0 / 20%);
   transition: all 0.3s ease;
   cursor: pointer;
+  font-family: "Poppins", sans-serif;
 }
 .category:hover {
   background-color: var(--colo-primary);
 }
 .category_icon {
-  width: 3.5rem;
-  height: auto;
+  width: 56px;
+  height: 56px;
 }
 
 /* trending */
@@ -520,6 +529,10 @@ ul {
   padding: 40px 0px 80px;
 }
 
+.footer-col .header_logo {
+  margin-bottom: 30px;
+}
+
 .footer h3,
 .footer h4 {
   margin-bottom: 24px;
@@ -666,6 +679,11 @@ ul {
   width: 4.5rem;
   height: 4.5rem;
 }
+@media only screen and (max-width: 1024px) {
+  .nav_form_wrapper {
+    display: none;
+  }
+}
 @media only screen and (max-width: 800px) {
   .top_nav {
     display: none;
@@ -673,14 +691,16 @@ ul {
   .nav_list {
     display: none;
   }
-  .nav_container{position: relative;}
+  .nav_container {
+    position: relative;
+  }
   .nav_items {
     position: absolute;
     right: 70px;
     bottom: 50%;
     transform: translateY(40%);
   }
-  .nav_form_wrapper {display: none;}
+
   .hamburger {
     display: block;
   }
@@ -703,8 +723,11 @@ ul {
   transition: all 0.5s ease;
 }
 .mobile_nav_item {
-  padding: 2rem 10rem 2rem 5rem;
-  border-bottom: 1px solid var(--colo-white-2);
+  padding: 2rem 20rem 2rem 2rem;
+  margin: 0px 10px;
+}
+.mobile_nav_item:not(:last-child) {
+  border-bottom: 1px solid rgb(219 68 68 / 30%);
 }
 .mobile_nav_link {
   color: var(--colo-dark-1);
@@ -721,9 +744,10 @@ ul {
 }
 
 .mobile_nav_close {
-  font-size: 2rem;
+  font-size: 32px;
   cursor: pointer;
-} 
+  color: #db4444;
+}
 /* Cart page */
 .cart {
   width: 100%;
@@ -1604,7 +1628,7 @@ input[type="number"] {
 }
 .filter-option label {
   font-family: "Poppins", sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   text-transform: capitalize;
   letter-spacing: 0.5px;
   cursor: pointer;
@@ -1612,6 +1636,103 @@ input[type="number"] {
 .filter-option label input {
   margin-right: 10px;
 }
+.filter-option input[type="checkbox"] {
+  appearance: none; /* remove default style */
+  width: 20px;
+  height: 20px;
+  border: 1px solid #a0a0a0;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  top: 3px;
+}
+
+/* Checked State */
+.filter-option input[type="checkbox"]:checked {
+  background-color: var(--colo-primary); /* your fill color */
+  border-color: var(--colo-primary);
+}
+
+/* Optional tick mark using pseudo-element */
+.filter-option input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: #fff;
+  font-size: 14px;
+  position: absolute;
+  left: 3.5px;
+  top: -1px;
+}
+/* css for range slider */
+
+/* Container */
+.slider-container {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Price labels */
+.price-range-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Tooltip (always visible) */
+.tooltip {
+  position: absolute;
+  bottom: -30px;
+  background: var(--colo-primary);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  transform: scale(1);
+  transition: left 0.1s linear;
+  pointer-events: none;
+}
+
+/* Slider */
+.price-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  background: #ddd;
+  transition: background 0.3s ease;
+}
+
+/* Thumb styles */
+.price-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--colo-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease;
+}
+
+.price-slider::-webkit-slider-thumb:active {
+  transform: scale(1.2);
+}
+
+.price-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--colo-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+/* css for range slider end */
 .t-header {
   width: 20%;
   text-align: center;
@@ -1628,8 +1749,45 @@ input[type="number"] {
   text-align: center;
 }
 .cart_item_image img {
-  width: 100%;
+  width: 150px;
   padding: 15px;
+}
+
+@media screen and (max-width: 767px) {
+  .cart_header {
+    display: none;
+  }
+  .cart_item_title {
+    width: 100%;
+  }
+  .cart_item {
+    flex-wrap: wrap;
+  }
+  .cart_item_image img {
+    width: 80px;
+  }
+  .product-listing {
+    flex-direction: column;
+    gap: 50px;
+  }
+  .product-filter {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .section {
+    margin-top: 5rem;
+  }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .color-filter,
+  .size-filter {
+    width: 50%;
+  }
+  .price-filter {
+    width: 100%;
+  }
 }
 
 /* checkout page css */
@@ -1800,6 +1958,11 @@ input[type="number"] {
   width: 50px;
 }
 
+.order-item .item-det p span {
+  font-weight: bold;
+  display: block;
+}
+
 .save-info input[type="checkbox"] {
   display: none; /* hide default checkbox */
 }
@@ -1915,26 +2078,22 @@ input[type="radio"]:checked + label::after {
   background: #e94e47;
   color: white;
   border: none;
-  padding: 5px 10px;
   cursor: pointer;
-  border-radius: 4px;
-  width: 100px;
+  border-radius: 50%;
+  width: 40px;
   height: 40px;
-  font-size: 12px;
-  font-family: "Poppins", sans-serif;
+  font-size: 22px;
 }
 
 .pagination .next {
   background: #e94e47;
   color: white;
   border: none;
-  padding: 5px 10px;
   cursor: pointer;
-  border-radius: 4px;
-  width: 100px;
+  border-radius: 50%;
+  width: 40px;
   height: 40px;
-  font-size: 12px;
-  font-family: "Poppins", sans-serif;
+  font-size: 22px;
 }
 .nav_wish_link,
 .nav_cart_link {
@@ -1959,4 +2118,47 @@ input[type="radio"]:checked + label::after {
 .cart_count {
   top: -4px;
   left: 12px;
+}
+
+@media screen and (max-width: 570px) {
+  .billing-details {
+    padding-right: 0px;
+  }
+}
+
+.terms-of-use h1,
+.privacy-policy h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+.terms-of-use h2,
+.terms-of-use h3,
+.privacy-policy h2,
+.privacy-policy h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+.terms-of-use p,
+.privacy-policy p {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+.terms-of-use ul li,
+.privacy-policy ul li {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+.swiper-pagination {
+  display: none;
+}
+.header_logo {
+  width: 170px;
 }

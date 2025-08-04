@@ -5,7 +5,7 @@ export const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-col">
-          <h3>Exclusive</h3>
+          <img src="/image/red-nexa-logo.png" alt="logo" className="header_logo" />
           <h4>Subscribe</h4>
           <div className="footer-mail">
             <p>Get 10% off your first order</p>

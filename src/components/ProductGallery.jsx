@@ -21,7 +21,7 @@ export const ProductGallery = ({tagName}) => {
           {gallerProducts.map((product, index) => (
             <div className={`gallery_item gallery_item_${index + 1}`} key={product.id || index}>
                 <img
-                src={`${import.meta.env.VITE_SITE_URL}${product.image[0]}`}
+                src={product.image[0]}
                 alt={product?.name}
                 className="gallery_item_img" />
                 <div className="gallery_item_content">

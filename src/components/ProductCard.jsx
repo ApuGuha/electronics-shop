@@ -30,7 +30,7 @@ export const ProductCard = ({product}) => {
     <div className="card" key={product?.id}>
           
             <div className="card_top">
-              <img src={`${import.meta.env.VITE_SITE_URL}${product.image[0]}`} alt={product?.name} className="card_img" />
+              <img src={product.image[0]} alt={product?.name} className="card_img" />
               <div className="card_top_icons">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

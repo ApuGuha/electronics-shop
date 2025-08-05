@@ -138,7 +138,7 @@ export const Header = () => {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <img src="./image/search.png" alt="" className="nav_search" />
+                <img src="/image/search.png" alt="" className="nav_search" />
               </form>
 
               {filteredResults.length > 0 && (

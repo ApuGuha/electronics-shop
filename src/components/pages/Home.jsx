@@ -72,7 +72,7 @@ export const Home = () => {
               <h2 className="trending_title">Enhance Your Music Experience</h2>
               <Link to="/category/electronics" className="trending_btn">Buy Now!</Link>
             </div>
-            <img src={`${import.meta.env.VITE_SITE_URL}/image/speaker.png`} alt="" className="trending_img" />
+            <img src="/image/speaker.png" alt="" className="trending_img" />
           </div>
         </div>
       </section>
@@ -107,17 +107,17 @@ export const Home = () => {
     <section className="section">
       <div className="container services_container">
         <div className="service">
-          <img src={`${import.meta.env.VITE_SITE_URL}/image/icons/service-1.png`} alt="" className="service_img" />
+          <img src="/image/icons/service-1.png" alt="" className="service_img" />
           <h3 className="service_title">FAST AND FREE DELIVERY</h3>
           <p className="service_p">Lorem ipsum dolor sit amet consectetur.</p>
         </div>
         <div className="service">
-          <img src={`${import.meta.env.VITE_SITE_URL}/image/icons/service-2.png`} alt="" className="service_img" />
+          <img src="/image/icons/service-2.png" alt="" className="service_img" />
           <h3 className="service_title">24/7 SUPPORT</h3>
           <p className="service_p">Lorem ipsum dolor sit amet consectetur.</p>
         </div>
         <div className="service">
-          <img src={`${import.meta.env.VITE_SITE_URL}/image/icons/service-3.png`} alt="" className="service_img" />
+          <img src="/image/icons/service-3.png" alt="" className="service_img" />
           <h3 className="service_title">MONEY BACK GUARANTY</h3>
           <p className="service_p">Lorem ipsum dolor sit amet consectetur.</p>
         </div>

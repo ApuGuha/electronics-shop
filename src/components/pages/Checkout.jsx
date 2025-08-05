@@ -210,7 +210,7 @@ export const Checkout = () => {
                     key={`${item.id}-${item.color}-${item.size}`}
                   >
                     <div className="item-det">
-                      <img src={`${import.meta.env.VITE_SITE_URL}${item.image[0]}`} alt="item"/>
+                      <img src={item.image[0]} alt="item"/>
                       <p>{item.name} <span>x {item.quantity}</span></p>
                     </div>
                     <span>${item.price * item.quantity}</span>

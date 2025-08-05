@@ -66,7 +66,7 @@ export const Cart = () => {
                     <div className="cart_item_title cmn-cart-item"><h4>{item.name}</h4></div>
                     <div className="cart_item_image cmn-cart-item">
                       <img
-                        src={`${import.meta.env.VITE_SITE_URL}${item.image[0]}`}
+                        src={item.image[0]}
                         alt={item.name}
                       />
                     </div>
